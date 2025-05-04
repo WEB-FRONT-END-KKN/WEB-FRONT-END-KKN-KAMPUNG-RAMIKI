@@ -1,10 +1,12 @@
 import React from 'react'
-import HomeBanner from '../components/banner/homeBanner'
+import {HomeBanner, Location, Description} from '../components'
 
 export default function home() {
   return (
     <div>
       <HomeBanner />
+      <Description />
+      <Location />
     </div>
   )
 }

@@ -1,2 +1,2 @@
-export { default as Home } from './Home.jsx'
+export { default as Home } from './home.jsx'
 export { default as About } from './about.jsx'
