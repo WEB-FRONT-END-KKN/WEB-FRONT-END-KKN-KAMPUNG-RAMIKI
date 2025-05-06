@@ -1,5 +1,9 @@
 export { default as Header } from './layouts/header';
 export { default as Footer } from './layouts/footer';
 export { default as HomeBanner } from './card/homeBanner';
-export { default as Location } from './card/location'
-export { default as Description } from './card/description'
+export { default as Location } from './card/location';
+export { default as Description } from './card/description';
+export { default as AboutBanner } from './card/aboutBanner'
+export { default as UmkmSection } from './card/umkmSection';
+export { default as DescriptionAbout } from './card/descriptionAbout';
+export { default as TeamKKN } from './card/teamKKN';

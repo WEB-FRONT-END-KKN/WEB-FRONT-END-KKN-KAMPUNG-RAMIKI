@@ -28,11 +28,21 @@ export default function Header() {
         </button>
 
         {/* Navigation for Desktop */}
-        <nav className="hidden lg:flex space-x-8">
-          <ul className="flex space-x-8">
-            <li className="hover:text-orange-200 transition">Home</li>
-            <li className="hover:text-orange-200 transition">Contact</li>
-            <li className="hover:text-orange-200 transition">Education</li>
+        <nav className="hidden lg:grid grid-cols-3 gap-8">
+          <ul className="flex flex-col items-center">
+            <li className="hover:bg-black hover:text-white px-4 py-2 rounded transition duration-300">
+              Home
+            </li>
+          </ul>
+          <ul className="flex flex-col items-center">
+            <li className="hover:bg-black hover:text-white px-4 py-2 rounded transition duration-300">
+              Contact
+            </li>
+          </ul>
+          <ul className="flex flex-col items-center">
+            <li className="hover:bg-black hover:text-white px-4 py-2 rounded transition duration-300">
+              Education
+            </li>
           </ul>
         </nav>
       </div>
@@ -51,21 +61,21 @@ export default function Header() {
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300`}
       >
-        <ul className="flex flex-col space-y-4 p-6">
+        <ul className="grid grid-cols-1 py-6">
           <li
-            className="hover:text-orange-200 transition"
+            className="hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
             onClick={() => setIsMenuOpen(false)}
           >
             Home
           </li>
           <li
-            className="hover:text-orange-200 transition"
+            className="hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
             onClick={() => setIsMenuOpen(false)}
           >
             Contact
           </li>
           <li
-            className="hover:text-orange-200 transition"
+            className="hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
             onClick={() => setIsMenuOpen(false)}
           >
             Education
@@ -79,21 +89,21 @@ export default function Header() {
           isMenuOpen ? "max-h-96" : "max-h-0"
         }`}
       >
-        <ul className="flex flex-col items-center space-y-4 bg-white py-4 shadow-md">
+        <ul className="grid grid-cols-1 gap-4 items-center bg-white pt-4 shadow-md">
           <li
-            className="hover:text-orange-200 transition"
+            className="hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
             onClick={() => setIsMenuOpen(false)}
           >
             Home
           </li>
           <li
-            className="hover:text-orange-200 transition"
+            className="hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
             onClick={() => setIsMenuOpen(false)}
           >
             Contact
           </li>
           <li
-            className="hover:text-orange-200 transition"
+            className="hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
             onClick={() => setIsMenuOpen(false)}
           >
             Education
