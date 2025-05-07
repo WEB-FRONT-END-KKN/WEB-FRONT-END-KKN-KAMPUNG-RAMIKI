@@ -4,8 +4,8 @@ import { FaInstagram } from 'react-icons/fa'; // Import logo Instagram dari Reac
 export default function TeamKkn() {
     const galleryImages = [
         "src/assets/teamKkn1.jpg",
-        "src/assets/teamKkn1.jpg",
-        "src/assets/teamKkn1.jpg",
+        "src/assets/teamKkn2.jpg",
+        "src/assets/teamKkn3.jpg",
         "src/assets/teamKkn1.jpg",
     ];
 

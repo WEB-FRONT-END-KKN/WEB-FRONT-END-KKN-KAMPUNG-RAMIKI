@@ -1,3 +1,4 @@
 export { default as Home } from './home.jsx'
 export { default as About } from './about.jsx'
 export { default as NotFound } from './notFound.jsx'
+export { default as Contact } from './contact.jsx'

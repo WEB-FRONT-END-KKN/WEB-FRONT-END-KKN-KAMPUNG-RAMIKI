@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Description() {
     const [lineHeight, setLineHeight] = useState(0); // State untuk tinggi garis
@@ -44,9 +45,11 @@ export default function Description() {
                         />
                     </div>
                     <div className="w-1/2 pl-10">
-                        <h2 className="text-2xl font-bold text-teal-600">Who Are We?</h2>
+                        <h2 className="text-2xl font-bold text-teal-600">Kampung Ramiki</h2>
                         <p className="text-gray-700 mt-4">
-                            We are Jakarta-based coffee and tea house focused on professionally brewing local sourced, high-quality coffee beans and tea leaves.
+                            Kampung Ramiki adalah destinasi yang menawarkan keindahan alam Papua Barat dan kekayaan budaya lokal.
+                            Sebagai pusat pengembangan budaya, Kampung Ramiki berkomitmen untuk melestarikan tradisi dan mendukung
+                            kegiatan masyarakat melalui pengembangan UMKM dan pariwisata berbasis komunitas.
                         </p>
                     </div>
                 </div>
@@ -59,18 +62,23 @@ export default function Description() {
                 {/* Section 2 */}
                 <div className="flex items-center">
                     <div className="w-1/2 pr-10 text-right">
-                        <h2 className="text-2xl font-bold text-teal-600">Product Showcase</h2>
+                        <h2 className="text-2xl font-bold text-teal-600">Tentang Kampung Ramiki</h2>
                         <p className="text-gray-700 mt-4">
-                            Our products use the highest quality ingredients processed with care.
+                            Kampung Ramiki adalah sebuah desa yang terletak di Kabupaten Teluk Wondama, Papua Barat.
+                            Desa ini dipimpin oleh kepala desa yang berdedikasi untuk memajukan masyarakat melalui
+                            pengembangan UMKM lokal dan pelestarian budaya tradisional.
                         </p>
-                        <button className="mt-4 px-6 py-2 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition">
-                            See our Coffee and Tea
-                        </button>
+                        <NavLink
+                            to="/about"
+                            className="mt-4 inline-block px-6 py-2 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition"
+                        >
+                            Pelajari Lebih Lanjut
+                        </NavLink>
                     </div>
                     <div className="w-1/2">
                         <img
                             src="src/assets/bandara.jpg"
-                            alt="Section 2"
+                            alt="Tentang Kampung Ramiki"
                             className="rounded-lg shadow-lg object-cover w-4/5 mx-auto h-64"
                         />
                     </div>
@@ -91,13 +99,17 @@ export default function Description() {
                         />
                     </div>
                     <div className="w-1/2 pl-10">
-                        <h2 className="text-2xl font-bold text-teal-600">Hang out with us!</h2>
+                        <h2 className="text-2xl font-bold text-teal-600">Kontak Kampung Ramiki</h2>
                         <p className="text-gray-700 mt-4">
-                            Our stores use sustainable furniture, surrounded by nature, to help our planet survive.
+                            Informasi kontak untuk Kampung Ramiki dapat ditemukan di berbagai platform media sosial.
+                            Kampung Ramiki dapat diakses melalui transportasi laut menggunakan kapal Pelni atau melalui transportasi udara dengan penerbangan lokal menuju Bandara Wasior.
                         </p>
-                        <button className="mt-4 px-6 py-2 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition">
-                            Find our cafes
-                        </button>
+                        <NavLink
+                            to="/contact"
+                            className="mt-4 inline-block px-6 py-2 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition"
+                        >
+                            Hubungi Kami
+                        </NavLink>
                     </div>
                 </div>
 
