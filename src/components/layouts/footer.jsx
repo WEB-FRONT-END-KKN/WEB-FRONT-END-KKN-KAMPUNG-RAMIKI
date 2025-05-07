@@ -9,17 +9,17 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start mb-6 md:mb-0">
           <div className="flex gap-4 mb-4">
             <img
-              src="src/assets/logoKelompok.jpg"
+              src="/assets/logoKelompok.jpg"
               alt="Logo Kelompok KKN"
               className="w-16 h-16 object-contain"
             />
             <img
-              src="src/assets/logoUnipa.webp"
+              src="/assets/logoUnipa.webp"
               alt="Logo Universitas Papua"
               className="w-16 h-16 object-contain"
             />
             <img
-              src="src/assets/logoPapuaBarat.svg"
+              src="/assets/logoPapuaBarat.svg"
               alt="Logo Papua Barat"
               className="w-16 h-16 object-contain"
             />

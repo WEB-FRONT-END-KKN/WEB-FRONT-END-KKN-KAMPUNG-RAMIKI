@@ -15,17 +15,17 @@ export default function Contact() {
                 {/* Logo Kelompok */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
                     <img
-                        src="src/assets/logoKelompok.jpg"
+                        src="/assets/logoKelompok.jpg"
                         alt="Logo Kelompok KKN"
                         className="w-32 h-32 object-contain"
                     />
                     <img
-                        src="src/assets/logoUnipa.webp"
+                        src="/assets/logoUnipa.webp"
                         alt="Logo Universitas Papua"
                         className="w-32 h-32 object-contain"
                     />
                     <img
-                        src="src/assets/logoPapuaBarat.svg"
+                        src="/assets/logoPapuaBarat.svg"
                         alt="Logo Papua Barat"
                         className="w-32 h-32 object-contain"
                     />

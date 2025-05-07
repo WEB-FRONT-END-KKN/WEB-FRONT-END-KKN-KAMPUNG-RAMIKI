@@ -11,7 +11,7 @@ export default function TransportationInformation() {
                 {/* Gambar Kapal */}
                 <div className="flex justify-center order-1 md:order-2">
                     <img
-                        src="src/assets/kapalPelni.jpeg"
+                        src="/assets/kapalPelni.jpeg"
                         alt="Transportasi Kapal"
                         className="rounded-lg shadow-lg object-cover w-full md:w-3/4"
                     />

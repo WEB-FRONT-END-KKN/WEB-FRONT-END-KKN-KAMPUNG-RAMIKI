@@ -16,17 +16,17 @@ export default function Header() {
         {/* Logo */}
         <div id="header-icon" className="flex items-center gap-4">
           <img
-            src="src/assets/logoKelompok.jpg"
+            src="/assets/logoKelompok.jpg"
             alt="Logo Kelompok KKN"
             className="w-10 h-10 object-contain"
           />
           <img
-            src="src/assets/logoUnipa.webp"
+            src="/assets/logoUnipa.webp"
             alt="Logo Universitas Papua"
             className="w-10 h-10 object-contain"
           />
           <img
-            src="src/assets/logoPapuaBarat.svg"
+            src="/assets/logoPapuaBarat.svg"
             alt="Logo Papua Barat"
             className="w-10 h-10 object-contain"
           />

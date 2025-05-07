@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 export default function AboutBanner() {
     const images = [
-        "src/assets/badaraWasior.png",
-        "src/assets/location.jpeg",
-        "src/assets/badaraWasior.png",
-        "src/assets/location.jpeg",
+        "/assets/badaraWasior.png",
+        "/assets/location.jpeg",
+        "/assets/badaraWasior.png",
+        "/assets/location.jpeg",
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);

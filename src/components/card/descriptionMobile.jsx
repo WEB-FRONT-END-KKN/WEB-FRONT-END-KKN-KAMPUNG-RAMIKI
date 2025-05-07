@@ -8,7 +8,7 @@ export default function descriptionMobile() {
             <div className="flex flex-col items-center space-y-6">
                 <h2 className="text-2xl font-bold text-teal-600 text-center">Kampung Ramiki</h2>
                 <img
-                    src="src/assets/location.jpeg"
+                    src="/assets/location.jpeg"
                     alt="Kampung Ramiki"
                     className="rounded-lg shadow-lg object-cover w-full h-64"
                 />
@@ -23,7 +23,7 @@ export default function descriptionMobile() {
             <div className="flex flex-col items-center space-y-6 mt-10">
                 <h2 className="text-2xl font-bold text-teal-600 text-center">Tentang Kampung Ramiki</h2>
                 <img
-                    src="src/assets/bandara.jpg"
+                    src="/assets/bandara.jpg"
                     alt="Tentang Kampung Ramiki"
                     className="rounded-lg shadow-lg object-cover w-full h-64"
                 />
@@ -44,7 +44,7 @@ export default function descriptionMobile() {
             <div className="flex flex-col items-center space-y-6 mt-10">
                 <h2 className="text-2xl font-bold text-teal-600 text-center">Kontak Kampung Ramiki</h2>
                 <img
-                    src="src/assets/badaraWasior.png"
+                    src="/assets/badaraWasior.png"
                     alt="Kontak Kampung Ramiki"
                     className="rounded-lg shadow-lg object-cover w-full h-64"
                 />

@@ -40,7 +40,7 @@ export default function DescriptionAbout() {
                 </p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <img
-                        src="src/assets/location.jpeg"
+                        src="/assets/location.jpeg"
                         alt="Lokasi Kampung Ramiki"
                         className="rounded-lg shadow-lg object-cover w-full h-64"
                     />
@@ -81,7 +81,7 @@ export default function DescriptionAbout() {
 
                         
                         <img
-                                src="src/assets/garudaPancasila.webp"
+                                src="/assets/garudaPancasila.webp"
                                 alt="Garuda Pancasila"
                                 className="w-20 h-20 object-contain rounded-full"
                             />
@@ -105,7 +105,7 @@ export default function DescriptionAbout() {
                 <h2 className="text-3xl font-bold text-center mb-4">Kepala Desa</h2>
                 <div className="flex flex-col lg:flex-row items-center gap-6">
                     <img
-                        src="src/assets/kepalaDesa.jpg"
+                        src="/assets/kepalaDesa.jpg"
                         alt="Kepala Desa Kampung Ramiki"
                         className="rounded-lg shadow-lg object-cover w-full lg:w-1/3 h-64"
                     />

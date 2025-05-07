@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 export default function UmkmSection() {
     const images = [
-        "src/assets/badaraWasior.png",
-        "src/assets/location.jpeg",
-        "src/assets/badaraWasior.png",
-        "src/assets/location.jpeg",
+        "/assets/badaraWasior.png",
+        "/assets/location.jpeg",
+        "/assets/badaraWasior.png",
+        "/assets/location.jpeg",
     ];
 
     const umkmContact = "628123456789"; // Replace with the actual contact number

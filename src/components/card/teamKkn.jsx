@@ -3,10 +3,10 @@ import { FaInstagram } from 'react-icons/fa'; // Import logo Instagram dari Reac
 
 export default function TeamKkn() {
     const galleryImages = [
-        "src/assets/teamKkn1.jpg",
-        "src/assets/teamKkn2.jpg",
-        "src/assets/teamKkn3.jpg",
-        "src/assets/teamKkn1.jpg",
+        "/assets/teamKkn1.jpg",
+        "/assets/teamKkn2.jpg",
+        "/assets/teamKkn3.jpg",
+        "/assets/teamKkn1.jpg",
     ];
 
     return (
@@ -29,17 +29,17 @@ export default function TeamKkn() {
             {/* Logo Kelompok, UNIPA, dan Dinas Wasior */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-10">
                 <img
-                    src="src/assets/logoKelompok.jpg"
+                    src="/assets/logoKelompok.jpg"
                     alt="Logo Kelompok KKN"
                     className="w-32 h-32 object-contain"
                 />
                 <img
-                    src="src/assets/logoUnipa.webp"
+                    src="/assets/logoUnipa.webp"
                     alt="Logo Universitas Papua"
                     className="w-32 h-32 object-contain"
                 />
                 <img
-                    src="src/assets/logoPapuaBarat.svg"
+                    src="/assets/logoPapuaBarat.svg"
                     alt="Logo Dinas Wasior/Papua Barat"
                     className="w-32 h-32 object-contain"
                 />

@@ -39,7 +39,7 @@ export default function Description() {
                 <div className="flex items-center">
                     <div className="w-1/2">
                         <img
-                            src="src/assets/location.jpeg"
+                            src="/assets/location.jpeg"
                             alt="Section 1"
                             className="rounded-lg shadow-lg object-cover w-4/5 mx-auto h-64"
                         />
@@ -77,7 +77,7 @@ export default function Description() {
                     </div>
                     <div className="w-1/2">
                         <img
-                            src="src/assets/bandara.jpg"
+                            src="/assets/bandara.jpg"
                             alt="Tentang Kampung Ramiki"
                             className="rounded-lg shadow-lg object-cover w-4/5 mx-auto h-64"
                         />
@@ -93,7 +93,7 @@ export default function Description() {
                 <div className="flex items-center">
                     <div className="w-1/2">
                         <img
-                            src="src/assets/badaraWasior.png"
+                            src="/assets/badaraWasior.png"
                             alt="Section 3"
                             className="rounded-lg shadow-lg object-cover w-4/5 mx-auto h-64"
                         />
