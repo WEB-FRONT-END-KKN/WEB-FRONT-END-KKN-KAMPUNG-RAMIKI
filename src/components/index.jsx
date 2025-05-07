@@ -6,7 +6,7 @@ export { default as Description } from './card/description';
 export { default as AboutBanner } from './card/aboutBanner'
 export { default as UmkmSection } from './card/umkmSection';
 export { default as DescriptionAbout } from './card/descriptionAbout';
-export { default as TeamKKN } from './card/teamKKN';
+export { default as TeamKKN } from './card/teamKkN';
 export { default as ContactBanner } from './card/contactBanner';
 export { default as TransformationInformation } from './card/transportationInformation';
 export { default as DescriptionMobile } from './card/descriptionMobile';
