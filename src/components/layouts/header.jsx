@@ -75,6 +75,16 @@ export default function Header() {
           >
             Contact
           </NavLink>
+          <NavLink
+            to="/citizen"
+            className={({ isActive }) =>
+              `px-4 py-2 rounded transition duration-300 ${
+                isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
+              }`
+            }
+          >
+            Masyarakat
+          </NavLink>
         </nav>
       </div>
 
@@ -120,6 +130,15 @@ export default function Header() {
               Contact
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/citizen"
+              className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Masyarakat
+            </NavLink>
+          </li>
         </ul>
       </div>
 
@@ -155,6 +174,15 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/citizen"
+              className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Masyarakat
             </NavLink>
           </li>
         </ul>
