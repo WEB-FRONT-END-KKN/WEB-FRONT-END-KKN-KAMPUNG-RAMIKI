@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import RootLayout from "../layout/rootLayout";
-import { Home, About, NotFound, Contact, Citizen,ArtikelList,ArtikelPage } from "../pages";
+import { Home, About, NotFound, Contact, Citizen, ArtikelList, ArtikelPage, Potensi } from "../pages";
 
 
 export default function RootRoutes() {
@@ -13,7 +13,8 @@ export default function RootRoutes() {
                 <Route path="/citizen" element={<Citizen />} />
                 <Route path="/artikel" element={<ArtikelList />} />
                 <Route path="/artikel/:nama" element={<ArtikelPage />} />
-                {/* Route untuk halaman yang tidak terdaftar */}
+                <Route path="/potensi" element={<Potensi />} />
+                    {/* Route untuk halaman yang tidak terdaftar */}
                 <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>

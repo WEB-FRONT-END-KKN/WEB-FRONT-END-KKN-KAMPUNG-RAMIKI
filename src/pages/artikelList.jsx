@@ -23,7 +23,7 @@ export default function ArtikelList() {
           : [];
         // Buat slug dari judul
         const slug = judulBerita
-          ? judulBerita.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '')
+          ? judulBerita.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
           : '';
         return {
           date,
@@ -45,7 +45,7 @@ export default function ArtikelList() {
 
   return (
     <div className="w-4/5 mx-auto py-8">
-      {artikelData.map((item, idx) => (
+      {artikelData.map((item) => (
         <Link to={`/artikel/${item.slug}`} key={item.slug}>
           <ArtikelCard
             image={item.images[0]}

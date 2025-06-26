@@ -10,3 +10,5 @@ export { default as TeamKKN } from './card/teamKkn';
 export { default as ContactBanner } from './card/contactBanner';
 export { default as TransformationInformation } from './card/transportationInformation';
 export { default as DescriptionMobile } from './card/descriptionMobile';
+export { default as ParawisataSection } from './card/ParawisataSection';
+export { default as UmkmKerajinan } from './card/umkmKerajinan';

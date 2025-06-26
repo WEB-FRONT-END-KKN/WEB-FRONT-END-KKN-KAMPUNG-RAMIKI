@@ -117,21 +117,7 @@ export default function UmkmSection() {
 
             {/* DESKTOP */}
             <div className="hidden lg:flex flex-row items-center gap-8">
-                {/* Galeri UMKM */}
-                <div className="w-1/2">
-                    <div className="grid grid-cols-2 gap-4">
-                        {images.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`UMKM Image ${index + 1}`}
-                                className="rounded-lg shadow-lg object-cover w-full h-48 transform transition-transform duration-300 hover:scale-105 cursor-pointer"
-                                onClick={() => handleImageClick(image)}
-                            />
-                        ))}
-                    </div>
-                </div>
-                {/* Penjelasan UMKM */}
+                {/* Penjelasan & tombol di kiri */}
                 <div className="w-1/2">
                     <h2 className="text-3xl font-bold mb-4">UMKM Sagu</h2>
                     <p className="text-gray-700 text-lg leading-relaxed mb-6">
@@ -160,6 +146,20 @@ export default function UmkmSection() {
                         </svg>
                         Hubungi via WhatsApp
                     </a>
+                </div>
+                {/* Galeri di kanan */}
+                <div className="w-1/2">
+                    <div className="grid grid-cols-2 gap-4">
+                        {images.map((image, index) => (
+                            <img
+                                key={index}
+                                src={image}
+                                alt={`UMKM Image ${index + 1}`}
+                                className="rounded-lg shadow-lg object-cover w-full h-48 transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+                                onClick={() => handleImageClick(image)}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
 

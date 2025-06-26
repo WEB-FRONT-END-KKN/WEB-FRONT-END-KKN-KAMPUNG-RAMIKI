@@ -81,9 +81,24 @@ export default function Citizen() {
         <div className="container mx-auto py-10 px-6 flex flex-col items-center">
             <h1 className="text-3xl font-bold text-center mb-8">Data Masyarakat Kampung Ramiki</h1>
 
-            {/* Switch untuk memilih data */}
-            <div className="flex items-center gap-4 mb-8">
-                <label className="flex items-center gap-2 cursor-pointer">
+            {/* Dropdown untuk mobile */}
+            <div className="w-full flex justify-center mb-8 sm:hidden">
+                <select
+                    className="w-[80%] px-4 py-2 rounded-lg shadow-lg border border-gray-300 text-gray-900"
+                    value={selectedData}
+                    onChange={e => setSelectedData(e.target.value)}
+                >
+                    <option value="umur">Umur</option>
+                    <option value="suku">Suku</option>
+                    <option value="jenisKelamin">Jenis Kelamin</option>
+                    <option value="agama">Agama</option>
+                    <option value="kepalaKeluarga">Kepala Keluarga</option>
+                </select>
+            </div>
+
+            {/* Radio button untuk desktop */}
+            <div className="hidden sm:flex items-center gap-4 mb-8 overflow-x-auto flex-nowrap w-full justify-center">
+                <label className="flex items-center gap-2 cursor-pointer min-w-max">
                     <input
                         type="radio"
                         name="dataSwitch"
@@ -96,7 +111,7 @@ export default function Citizen() {
                         Umur
                     </span>
                 </label>
-                <label className="flex items-center gap-2 cursor-pointer">
+                <label className="flex items-center gap-2 cursor-pointer min-w-max">
                     <input
                         type="radio"
                         name="dataSwitch"
@@ -109,7 +124,7 @@ export default function Citizen() {
                         Suku
                     </span>
                 </label>
-                <label className="flex items-center gap-2 cursor-pointer">
+                <label className="flex items-center gap-2 cursor-pointer min-w-max">
                     <input
                         type="radio"
                         name="dataSwitch"
@@ -122,7 +137,7 @@ export default function Citizen() {
                         Jenis Kelamin
                     </span>
                 </label>
-                <label className="flex items-center gap-2 cursor-pointer">
+                <label className="flex items-center gap-2 cursor-pointer min-w-max">
                     <input
                         type="radio"
                         name="dataSwitch"
@@ -135,8 +150,7 @@ export default function Citizen() {
                         Agama
                     </span>
                 </label>
-                {/* Radio Kepala Keluarga */}
-                <label className="flex items-center gap-2 cursor-pointer">
+                <label className="flex items-center gap-2 cursor-pointer min-w-max">
                     <input
                         type="radio"
                         name="dataSwitch"
@@ -176,7 +190,7 @@ export default function Citizen() {
 
             {/* Pie Chart untuk selain kepala keluarga */}
             {(selectedData !== "kepalaKeluarga") && (
-                <PieChart width={400} height={400}>
+                <PieChart width={400} height={600}>
                     <Pie
                         data={chartData}
                         cx="50%"

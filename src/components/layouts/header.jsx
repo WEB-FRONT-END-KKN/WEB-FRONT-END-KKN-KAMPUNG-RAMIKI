@@ -95,6 +95,16 @@ export default function Header() {
           >
             Masyarakat
           </NavLink>
+          <NavLink
+            to="/potensi"
+            className={({ isActive }) =>
+              `px-4 py-2 rounded transition duration-300 ${
+                isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
+              }`
+            }
+          >
+            Potensi
+          </NavLink>
         </nav>
       </div>
 
@@ -158,6 +168,15 @@ export default function Header() {
               Masyarakat
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/potensi"
+              className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Potensi
+            </NavLink>
+          </li>
         </ul>
       </div>
 
@@ -211,6 +230,15 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               Masyarakat
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/potensi"
+              className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Potensi
             </NavLink>
           </li>
         </ul>
