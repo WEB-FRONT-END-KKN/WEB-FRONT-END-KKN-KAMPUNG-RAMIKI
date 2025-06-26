@@ -66,6 +66,16 @@ export default function Header() {
             About
           </NavLink>
           <NavLink
+            to="/artikel"
+            className={({ isActive }) =>
+              `px-4 py-2 rounded transition duration-300 ${
+                isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
+              }`
+            }
+          >
+            Artikel
+          </NavLink>
+          <NavLink
             to="/contact"
             className={({ isActive }) =>
               `px-4 py-2 rounded transition duration-300 ${
@@ -123,6 +133,15 @@ export default function Header() {
           </li>
           <li>
             <NavLink
+              to="/artikel"
+              className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Artikel
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/contact"
               className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
               onClick={() => setIsMenuOpen(false)}
@@ -145,7 +164,7 @@ export default function Header() {
       {/* Dropdown Menu for Mobile */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? "max-h-96" : "max-h-0"
+          isMenuOpen ? " max-h-full" : "max-h-0"
         }`}
       >
         <ul className="grid grid-cols-1 gap-4 items-center bg-white pt-4 shadow-md">
@@ -165,6 +184,15 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/artikel"
+              className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Artikel
             </NavLink>
           </li>
           <li>

@@ -1,29 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Legend } from "recharts";
 import axios from "axios";
+import { FaUsers } from "react-icons/fa";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28DFF", "#FF69B4", "#A52A2A"];
 
 export default function Citizen() {
     const [data, setData] = useState([]);
     const [selectedData, setSelectedData] = useState("umur");
+    const [showPapuaDetail, setShowPapuaDetail] = useState(false);
 
     useEffect(() => {
-        // ID Spreadsheet dan API Key
-        const spreadsheetId = "1dpfc9uoMeaN87gwAzlNCx8chXKl7uR0-K1tfMGS2Wh8";
+        const spreadsheetId = "144pLSC4_7trcyH5n_dEIwckFYwsgefwzOdtbi1eR-lc";
         const apiKey = "AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E";
-
-        // URL Google Sheets API
         const spreadsheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Form Responses 1?key=${apiKey}`;
 
-        // Ambil data dari Google Sheets API
         axios.get(spreadsheetUrl).then((response) => {
-            const rows = response.data.values.slice(1); // Hapus header
+            const rows = response.data.values.slice(1);
             const parsedData = rows.map((row) => {
-                const [, nama, tanggalLahir, jenisKelamin, agama, suku] = row;
-                return { nama, tanggalLahir, jenisKelamin, agama, suku };
+                const [, nama, tanggalLahir, namaKepalaKeluarga, jenisKelamin, agama, suku, papua, nonPapua] = row;
+                return { nama, tanggalLahir, namaKepalaKeluarga, jenisKelamin, agama, suku, papua, nonPapua };
             });
-
             setData(parsedData);
         });
     }, []);
@@ -40,36 +37,45 @@ export default function Citizen() {
         return age;
     };
 
-    // Kelompokkan data berdasarkan kategori umur, suku, jenis kelamin, atau agama
-    const filteredData = data.reduce(
-        (acc, curr) => {
-            if (selectedData === "umur") {
-                const age = calculateAge(curr.tanggalLahir);
-                if (age <= 5) acc["Balita/Toddlers"] = (acc["Balita/Toddlers"] || 0) + 1;
-                else if (age >= 6 && age <= 18) acc["Pelajar"] = (acc["Pelajar"] || 0) + 1;
-                else if (age >= 19 && age <= 58) acc["Pekerja/Mahasiswa"] = (acc["Pekerja/Mahasiswa"] || 0) + 1;
-                else acc["Pensiun"] = (acc["Pensiun"] || 0) + 1;
-            } else if (selectedData === "suku") {
-                const suku = curr.suku.trim();
-                if (["Wondamen", "Wamesa", "Biak", "Yapen", "Dani", "Manokwari"].includes(suku)) {
-                    acc[suku] = (acc[suku] || 0) + 1;
-                } else {
-                    acc["Yang Lain"] = (acc["Yang Lain"] || 0) + 1;
-                }
-            } else if (selectedData === "jenisKelamin") {
-                acc[curr.jenisKelamin] = (acc[curr.jenisKelamin] || 0) + 1;
-            } else if (selectedData === "agama") {
-                acc[curr.agama] = (acc[curr.agama] || 0) + 1;
-            }
-            return acc;
-        },
-        {}
-    );
+    // Hitung kepala keluarga unik
+    const kepalaKeluargaUnik = new Set(data.map(d => d.namaKepalaKeluarga)).size;
 
-    const chartData = Object.entries(filteredData).map(([key, value]) => ({
-        name: key,
-        value,
-    }));
+    // Filter data untuk chart
+    const filteredData = data.reduce((acc, curr) => {
+        if (selectedData === "suku") {
+            if (curr.suku.trim() === "Papua") {
+                if (showPapuaDetail) {
+                    // Tampilkan detail suku Papua (misal: Wondamen, Biak, dll)
+                    const detail = curr.papua?.trim() || "Lainnya";
+                    acc[detail] = (acc[detail] || 0) + 1;
+                } else {
+                    acc["Papua"] = (acc["Papua"] || 0) + 1;
+                }
+            } else {
+                acc["Non Papua"] = (acc["Non Papua"] || 0) + 1;
+            }
+        } else if (selectedData === "umur") {
+            const age = calculateAge(curr.tanggalLahir);
+            if (age <= 5) acc["Balita/Toddlers"] = (acc["Balita/Toddlers"] || 0) + 1;
+            else if (age >= 6 && age <= 18) acc["Pelajar"] = (acc["Pelajar"] || 0) + 1;
+            else if (age >= 19 && age <= 58) acc["Pekerja/Mahasiswa"] = (acc["Pekerja/Mahasiswa"] || 0) + 1;
+            else acc["Pensiun"] = (acc["Pensiun"] || 0) + 1;
+        } else if (selectedData === "jenisKelamin") {
+            acc[curr.jenisKelamin] = (acc[curr.jenisKelamin] || 0) + 1;
+        } else if (selectedData === "agama") {
+            acc[curr.agama] = (acc[curr.agama] || 0) + 1;
+        }
+        return acc;
+    }, {});
+
+    // Data chart sesuai pilihan
+    let chartData = [];
+    if (selectedData === "umur" || selectedData === "suku" || selectedData === "jenisKelamin" || selectedData === "agama") {
+        chartData = Object.entries(filteredData).map(([key, value]) => ({
+            name: key,
+            value,
+        }));
+    }
 
     return (
         <div className="container mx-auto py-10 px-6 flex flex-col items-center">
@@ -86,10 +92,7 @@ export default function Citizen() {
                         onChange={() => setSelectedData("umur")}
                         className="hidden"
                     />
-                    <span
-                        className={`px-4 py-2 rounded-lg shadow-lg ${selectedData === "umur" ? "bg-blue-500 text-white" : "bg-gray-200"
-                            }`}
-                    >
+                    <span className={`px-4 py-2 rounded-lg shadow-lg ${selectedData === "umur" ? "bg-blue-500 text-white" : "bg-gray-200"}`}>
                         Umur
                     </span>
                 </label>
@@ -102,10 +105,7 @@ export default function Citizen() {
                         onChange={() => setSelectedData("suku")}
                         className="hidden"
                     />
-                    <span
-                        className={`px-4 py-2 rounded-lg shadow-lg ${selectedData === "suku" ? "bg-blue-500 text-white" : "bg-gray-200"
-                            }`}
-                    >
+                    <span className={`px-4 py-2 rounded-lg shadow-lg ${selectedData === "suku" ? "bg-blue-500 text-white" : "bg-gray-200"}`}>
                         Suku
                     </span>
                 </label>
@@ -118,10 +118,7 @@ export default function Citizen() {
                         onChange={() => setSelectedData("jenisKelamin")}
                         className="hidden"
                     />
-                    <span
-                        className={`px-4 py-2 rounded-lg shadow-lg ${selectedData === "jenisKelamin" ? "bg-blue-500 text-white" : "bg-gray-200"
-                            }`}
-                    >
+                    <span className={`px-4 py-2 rounded-lg shadow-lg ${selectedData === "jenisKelamin" ? "bg-blue-500 text-white" : "bg-gray-200"}`}>
                         Jenis Kelamin
                     </span>
                 </label>
@@ -134,32 +131,73 @@ export default function Citizen() {
                         onChange={() => setSelectedData("agama")}
                         className="hidden"
                     />
-                    <span
-                        className={`px-4 py-2 rounded-lg shadow-lg ${selectedData === "agama" ? "bg-blue-500 text-white" : "bg-gray-200"
-                            }`}
-                    >
+                    <span className={`px-4 py-2 rounded-lg shadow-lg ${selectedData === "agama" ? "bg-blue-500 text-white" : "bg-gray-200"}`}>
                         Agama
+                    </span>
+                </label>
+                {/* Radio Kepala Keluarga */}
+                <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                        type="radio"
+                        name="dataSwitch"
+                        value="kepalaKeluarga"
+                        checked={selectedData === "kepalaKeluarga"}
+                        onChange={() => setSelectedData("kepalaKeluarga")}
+                        className="hidden"
+                    />
+                    <span className={`px-4 py-2 rounded-lg shadow-lg ${selectedData === "kepalaKeluarga" ? "bg-blue-500 text-white" : "bg-gray-200"}`}>
+                        Kepala Keluarga
                     </span>
                 </label>
             </div>
 
-            {/* Pie Chart */}
-            <PieChart width={400} height={400}>
-                <Pie
-                    data={chartData}
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={150}
-                    fill="#8884d8"
-                    dataKey="value"
-                    label
-                >
-                    {chartData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                </Pie>
-                <Legend />
-            </PieChart>
+            {/* Filter detail suku Papua */}
+            {selectedData === "suku" && (
+                <label className="flex items-center gap-2 mb-4">
+                    <input
+                        type="checkbox"
+                        checked={showPapuaDetail}
+                        onChange={e => setShowPapuaDetail(e.target.checked)}
+                    />
+                    <span>Tampilkan detail suku Papua</span>
+                </label>
+            )}
+
+            {/* Tampilkan jumlah kepala keluarga unik jika radio kepala keluarga dipilih */}
+            {selectedData === "kepalaKeluarga" && (
+                <div className="mb-8 flex items-center gap-3 text-2xl font-semibold">
+                    <span>Kepala Keluarga: </span>
+                    <span className="text-blue-600 flex items-center gap-2">
+                        {kepalaKeluargaUnik}
+                        <FaUsers className="inline ml-2" />
+                    </span>
+                </div>
+            )}
+
+            {/* Pie Chart untuk selain kepala keluarga */}
+            {(selectedData !== "kepalaKeluarga") && (
+                <PieChart width={400} height={400}>
+                    <Pie
+                        data={chartData}
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={150}
+                        fill="#8884d8"
+                        dataKey="value"
+                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    >
+                        {chartData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                    </Pie>
+                    <Legend
+                        formatter={(value) => {
+                            const found = chartData.find(d => d.name === value);
+                            return `${value} (${found ? found.value : 0})`;
+                        }}
+                    />
+                </PieChart>
+            )}
         </div>
     );
 }

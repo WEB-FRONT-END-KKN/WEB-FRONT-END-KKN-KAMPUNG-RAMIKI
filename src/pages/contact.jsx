@@ -39,11 +39,11 @@ export default function Contact() {
                     </div>
                     <div className="flex items-center gap-2 text-lg text-gray-700">
                         <FaTiktok className="text-black w-6 h-6" />
-                        <span>@tiktok_kelompok_kkn</span>
+                        <span>@kkn.ramiki</span>
                     </div>
                     <div className="flex items-center gap-2 text-lg text-gray-700">
                         <FaInstagram className="text-pink-500 w-6 h-6" />
-                        <span>@instagram_kelompok_kkn</span>
+                        <span>@kkn_ramiki</span>
                     </div>
                 </div>
             </div>
