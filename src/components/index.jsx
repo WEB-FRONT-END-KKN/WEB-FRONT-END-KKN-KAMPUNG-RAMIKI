@@ -12,3 +12,4 @@ export { default as TransformationInformation } from './card/transportationInfor
 export { default as DescriptionMobile } from './card/descriptionMobile';
 export { default as ParawisataSection } from './card/parawisataSection';
 export { default as UmkmKerajinan } from './card/umkmKerajinan';
+export { default as UmkmCard } from './card/umkmCard';

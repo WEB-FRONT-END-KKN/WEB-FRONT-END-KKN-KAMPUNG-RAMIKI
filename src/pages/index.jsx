@@ -6,3 +6,4 @@ export { default as Citizen } from './citizen.jsx';
 export { default as ArtikelList } from './artikelList.jsx';
 export { default as ArtikelPage } from './artikelPage.jsx';
 export { default as Potensi } from './potensi.jsx';
+export { default as UmkmPage } from './umkmPage.jsx';
