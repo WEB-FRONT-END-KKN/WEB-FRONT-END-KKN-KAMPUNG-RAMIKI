@@ -1,6 +1,17 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import UmkmCard from '../components/card/umkmCard'
 import { useMediaQuery } from 'react-responsive';
+
+// --- Helper function untuk mengambil gambar sebagai data & membuat URL ---
+const getGoogleDriveImageAsBlobUrl = async (url) => {
+    if (!url || typeof url !== 'string') return '';
+    const fileIdMatch = url.match(/id=([^&]+)/);
+    if (!fileIdMatch || !fileIdMatch[1]) return url;
+    const fileId = fileIdMatch[1];
+    return `https://drive.google.com/uc?id=${fileId}`;
+};
 
 export default function UmkmPage() {
     // Contoh data struktur koperasi
@@ -57,11 +68,70 @@ export default function UmkmPage() {
             whatsapp: "6285566778899"
         }
     ];
+    // State untuk data UMKM yang akan diambil dari API
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const SPREADSHEET_ID = '12EGp8r-dF8FQujkSFip5HxlDazz1VJSfq8Uaki-zlqc';
+        const API_KEY = 'AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E'; // Ganti dengan API Key Anda
+        const spreadsheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Form Responses 1?key=${API_KEY}`;
+
+        const fetchAndProcessData = async () => {
+            try {
+                const response = await axios.get(spreadsheetUrl);
+                const rows = response.data.values.slice(1);
+                console.log("Data dari spreadsheet:", rows);
+                const dataPromises = rows.map(async (row) => {
+                    const [
+                        timestamp, sellerName, sellerImageRaw, whatsapp, facebook,
+                        title, description, category, imageRaw, imagesRaw
+                    ] = row;
+
+                    const sellerImagePromise = getGoogleDriveImageAsBlobUrl(sellerImageRaw);
+                    const imagePromise = getGoogleDriveImageAsBlobUrl(imageRaw);
+
+                    const [sellerImage, image] = await Promise.all([sellerImagePromise, imagePromise]);
+
+                    // Hanya return produk yang valid (punya nama, judul, dan gambar utama)
+                    if (sellerName && title && image) {
+                        return {
+                            sellerName, sellerImage, whatsapp, title, description, image,
+                        };
+                    }
+                    return null;
+                });
+
+                const parsedData = (await Promise.all(dataPromises)).filter(Boolean); // Hapus produk yang null
+                setProducts(parsedData);
+
+            } catch (err) {
+                console.error("Gagal memuat atau memproses data:", err);
+                setError("Gagal memuat data produk. Pastikan URL dan API Key benar.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchAndProcessData();
+
+        // Cleanup function untuk mencegah memory leak
+        return () => {
+            products.forEach(p => {
+                if (p.image) URL.revokeObjectURL(p.image);
+                if (p.sellerImage) URL.revokeObjectURL(p.sellerImage);
+            });
+        };
+    }, []); // Dependensi kosong agar hanya berjalan sekali
+
 
     // Responsive: 4 card di mobile, 6 di desktop
     const isMobile = useMediaQuery({ maxWidth: 1023 });
-    const cardsToShow = isMobile ? umkmList.slice(0, 4) : umkmList.slice(0, 6);
+    const cardsToShow = isMobile ? products.slice(0, 4) : products.slice(0, 6);
 
+    console.log("Cards to show:", cardsToShow , "products:", products);
+    
     return (
         <div className="w-full bg-white">
             <div className="mx-auto w-full max-w-7xl" style={{ width: '80%' }}>
@@ -105,12 +175,25 @@ export default function UmkmPage() {
                         ))}
                     </div>
                 </div>
-                {/* Daftar UMKM */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 mb-8">
-                    {cardsToShow.map((umkm, idx) => (
-                        <UmkmCard key={idx} {...umkm} />
-                    ))}
-                </div>
+                {/* --- Bagian Daftar UMKM Dinamis --- */}
+                {loading && <div className="text-center text-lg py-8">Memuat produk unggulan...</div>}
+                {error && <div className="text-center text-lg text-red-500 py-8">{error}</div>}
+                {!loading && !error && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 mb-8">
+                        {cardsToShow.map((umkm, idx) => (
+                            <UmkmCard
+                                key={idx}
+                                image={umkm.image}
+                                title={umkm.title}
+                                sellerImage={umkm.sellerImage}
+                                sellerName={umkm.sellerName}
+                                description={umkm.description}
+                                whatsapp={umkm.whatsapp}
+                            />
+                        ))}
+                    </div>
+                )}
+
                 {/* Tombol Lebih Lengkap */}
                 <div className="flex justify-center mb-12">
                     <a
