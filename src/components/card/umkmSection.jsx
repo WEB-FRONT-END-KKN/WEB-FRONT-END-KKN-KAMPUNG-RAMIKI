@@ -4,10 +4,10 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 export default function UmkmSection() {
     const images = [
-        "/assets/badaraWasior.png",
-        "/assets/location.jpeg",
-        "/assets/badaraWasior.png",
-        "/assets/location.jpeg",
+        "/assets/umkmJasa.jpg",
+        "/assets/umkmKerajinan.jpg",
+        "/assets/umkmPapeda.jpg",
+        "/assets/umkmSwadayan.webp",
     ];
     const [popupImage, setPopupImage] = useState(null);
 
