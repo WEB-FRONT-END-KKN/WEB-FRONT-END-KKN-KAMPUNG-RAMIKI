@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function ArtikelCard({ image, title, excerpt, date }) {
-    console.log('Rendering ArtikelCard:', { image, title, excerpt, date });
     const [imgSrc, setImgSrc] = useState(image);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Cek jika image adalah Google Drive ID
@@ -15,7 +15,13 @@ export default function ArtikelCard({ image, title, excerpt, date }) {
                 { responseType: 'blob' }
             ).then(res => {
                 setImgSrc(URL.createObjectURL(res.data));
+                setLoading(false);
+            }).catch(() => {
+                setImgSrc(null);
+                setLoading(true); // Tetap loading jika gagal
             });
+        } else {
+            setLoading(false);
         }
     }, [image]);
 
@@ -23,14 +29,16 @@ export default function ArtikelCard({ image, title, excerpt, date }) {
         <div className="flex flex-col md:flex-row w-full bg-white rounded-lg shadow-md overflow-hidden mb-4 relative">
             {/* Gambar Artikel */}
             <div className="w-full h-48 md:w-64 md:h-32 flex items-center justify-center bg-gray-100">
-                {imgSrc ? (
-                    <img
-                        src={imgSrc}
-                        alt={title}
-                        className="w-full h-48 object-cover md:w-64 md:h-32"
-                    />
+                {loading ? (
+                    <span className="loading loading-ring loading-xl text-emerald-600"></span>
                 ) : (
-                    <span className="loading loading-ring loading-lg"></span>
+                    imgSrc && (
+                        <img
+                            src={imgSrc}
+                            alt={title}
+                            className="w-full h-48 object-cover md:w-64 md:h-32"
+                        />
+                    )
                 )}
             </div>
             {/* Konten */}
