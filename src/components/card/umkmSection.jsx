@@ -91,6 +91,13 @@ export default function UmkmSection() {
                         melalui berbagai produk kreatif dan inovatif. Produk-produk UMKM ini mencakup kerajinan tangan,
                         makanan khas, dan berbagai hasil bumi yang diolah dengan kualitas terbaik.
                     </p>
+                    <div className="flex flex-wrap justify-center items-center gap-6 mb-8">
+                        <img src="/assets/lagoDaerahTertinggal.png" alt="Logo Daerah Tertinggal" className="h-14" />
+                        <img src="/assets/logoKemenkop.png" alt="Logo Kemenkop" className="h-14" />
+                        <img src="/assets/logoWondama.png" alt="Logo Wondama" className="h-14" />
+                        <img src="/assets/logoUnipa.webp" alt="Logo Unipa" className="h-14" />
+                        <img src="/assets/logoKelompok.jpg" alt="Logo Kelompok" className="h-14" />
+                    </div>
                     <p className="text-gray-700 text-lg leading-relaxed mb-6 text-left">
                         Dengan mendukung UMKM Kampung Ramiki, Anda turut membantu pemberdayaan masyarakat lokal dan
                         pelestarian budaya tradisional. Mari bergabung dan dukung produk-produk lokal kami!

@@ -10,7 +10,8 @@ import {
     ArtikelPage,
     Potensi,
     UmkmPage,
-    UmkmDetail
+    UmkmDetail,
+    UmkmList
 } from "../pages";
 
 
@@ -27,6 +28,7 @@ export default function RootRoutes() {
                 <Route path="/potensi" element={<Potensi />} />
                 <Route path="/umkm" element={<UmkmPage />} />
                 <Route path="/umkmdetail/:slug" element={<UmkmDetail />} />
+                <Route path="/umkmlist" element={<UmkmList />} /> {/* Rute baru */}
 
                 {/* Route untuk halaman yang tidak terdaftar */}
                 <Route path="*" element={<NotFound />} />

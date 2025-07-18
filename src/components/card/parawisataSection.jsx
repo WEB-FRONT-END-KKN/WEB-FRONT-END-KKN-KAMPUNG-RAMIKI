@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { FaChevronLeft, FaChevronRight, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 
 const images = [
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80",
+    "/assets/tourguide1.jpg",
+    "/assets/tourguide2.jpg",
+    "/assets/tourguide3.jpg",
 ];
 
 export default function ParawisataSection() {
@@ -76,21 +75,21 @@ export default function ParawisataSection() {
                 {/* Foto Tourguide */}
                 <div className="flex-shrink-0">
                     <img
-                        src="https://randomuser.me/api/portraits/men/32.jpg"
+                        src="assets/parawisataTourGuide.jpg"
                         alt="Tourguide Ramiki"
                         className="w-32 h-32 rounded-full object-cover border-4 border-blue-300"
                     />
                 </div>
                 {/* Bio & Kontak */}
                 <div className="flex-1 flex flex-col items-start">
-                    <h3 className="text-2xl font-bold mb-2">Budi Ramiki</h3>
+                    <h3 className="text-2xl font-bold mb-2">Echletus JM Sawaki</h3>
                     <p className="text-gray-700 mb-4">
                         Tourguide lokal berpengalaman, siap menemani Anda menjelajahi keindahan dan budaya Kampung Ramiki. 
-                        Budi telah mendampingi wisatawan dari berbagai negara dan fasih berbahasa Indonesia serta Inggris.
+                        Eky telah mendampingi wisatawan dari berbagai negara dan fasih berbahasa Indonesia serta Inggris.
                     </p>
                     <div className="flex gap-3">
                         <a
-                            href="https://facebook.com"
+                            href="https://www.facebook.com/share/1AmejA4qXt/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
@@ -98,7 +97,7 @@ export default function ParawisataSection() {
                             <FaFacebook size={20} /> Facebook
                         </a>
                         <a
-                            href="https://wa.me/628123456789"
+                            href="https://wa.me/6281248931154?text=Halo%20Eky,%20saya%20ingin%20tanya%20tentang%20wisata%20di%20Kampung%20Ramiki."
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"

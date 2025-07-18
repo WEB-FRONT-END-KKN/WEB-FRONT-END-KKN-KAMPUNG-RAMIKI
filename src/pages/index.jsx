@@ -8,3 +8,4 @@ export { default as ArtikelPage } from './artikelPage.jsx';
 export { default as Potensi } from './potensi.jsx';
 export { default as UmkmPage } from './umkmPage.jsx';
 export { default as UmkmDetail } from './umkmDetail.jsx';
+export { default as UmkmList } from './umkmList.jsx'; // Rute baru untuk daftar UMKM    

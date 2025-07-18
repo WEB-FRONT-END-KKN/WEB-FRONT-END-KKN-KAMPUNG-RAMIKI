@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import axios from 'axios';
+import { Helmet } from 'react-helmet'; // Tambahkan ini
 
 const spreadsheetId = '10oEozEsvF41EpVQEcZaaFOsOSc6YRwiPl_HHKPxrqgI';
 const apiKey = 'AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E';
@@ -77,46 +78,71 @@ export default function ArtikelPage() {
     const prevImage = () => setCurrent((current - 1 + imgSrcList.length) % imgSrcList.length);
 
     return (
-        <div className="flex justify-center py-8 bg-gray-50 min-h-screen">
-            <div className="bg-white rounded-xl shadow-lg w-full max-w-3xl p-6">
-                {/* Carousel */}
-                <div className="relative flex justify-center items-center mb-6 min-h-80">
-                    {imgSrcList.length === 0 ? (
-                        <span className="loading loading-infinity loading-lg text-primary"></span>
-                    ) : (
-                        <>
-                            <button onClick={prevImage} className="absolute left-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10" aria-label="Sebelumnya">
-                                <FaChevronLeft className="text-2xl" />
-                            </button>
-                            <img
-                                src={imgSrcList[current]}
-                                alt={`Galeri ${current + 1}`}
-                                className="rounded-lg object-cover w-full max-h-80"
-                            />
-                            <button onClick={nextImage} className="absolute right-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10" aria-label="Selanjutnya">
-                                <FaChevronRight className="text-2xl" />
-                            </button>
-                            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
-                                {imgSrcList.map((_, idx) => (
-                                    <span
-                                        key={idx}
-                                        className={`w-3 h-3 rounded-full ${idx === current ? 'bg-blue-500' : 'bg-gray-300'}`}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                    )}
-                </div>
-                <h1 className="text-3xl font-bold mb-2">{artikel.title}</h1>
-                <div className="text-gray-500 text-sm mb-4 flex items-center gap-2">
-                    {artikel.date}
-                    <span className="mx-1">•</span>
-                    By {artikel.namaPenulis}
-                </div>
-                <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                    {artikel.content}
+        <>
+            <Helmet>
+                <title>{artikel?.title ? artikel.title + " | Kampung Ramiki" : "Artikel | Kampung Ramiki"}</title>
+                <meta name="description" content={artikel?.content?.slice(0, 150) || "Artikel Kampung Ramiki"} />
+                <meta name="keywords" content={`Kampung Ramiki, Artikel, ${artikel?.title || ""}, ${artikel?.namaPenulis || ""}`} />
+                <meta property="og:title" content={artikel?.title || "Artikel Kampung Ramiki"} />
+                <meta property="og:description" content={artikel?.content?.slice(0, 150) || "Artikel Kampung Ramiki"} />
+                <meta property="og:type" content="article" />
+                <meta property="og:image" content={artikel?.images?.[0] || ""} />
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Article",
+                        "headline": artikel?.title,
+                        "image": artikel?.images?.[0] || "",
+                        "datePublished": artikel?.date,
+                        "author": {
+                            "@type": "Person",
+                            "name": artikel?.namaPenulis
+                        },
+                        "description": artikel?.content?.slice(0, 150) || ""
+                    })}
+                </script>
+            </Helmet>
+            <div className="flex justify-center py-8 bg-gray-50 min-h-screen">
+                <div className="bg-white rounded-xl shadow-lg w-full max-w-3xl p-6">
+                    {/* Carousel */}
+                    <div className="relative flex justify-center items-center mb-6 min-h-80">
+                        {imgSrcList.length === 0 ? (
+                            <span className="loading loading-infinity loading-lg text-primary"></span>
+                        ) : (
+                            <>
+                                <button onClick={prevImage} className="absolute left-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10" aria-label="Sebelumnya">
+                                    <FaChevronLeft className="text-2xl" />
+                                </button>
+                                <img
+                                    src={imgSrcList[current]}
+                                    alt={`Galeri ${current + 1}`}
+                                    className="rounded-lg object-cover w-full max-h-80"
+                                />
+                                <button onClick={nextImage} className="absolute right-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10" aria-label="Selanjutnya">
+                                    <FaChevronRight className="text-2xl" />
+                                </button>
+                                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+                                    {imgSrcList.map((_, idx) => (
+                                        <span
+                                            key={idx}
+                                            className={`w-3 h-3 rounded-full ${idx === current ? 'bg-blue-500' : 'bg-gray-300'}`}
+                                        />
+                                    ))}
+                                </div>
+                            </>
+                        )}
+                    </div>
+                    <h1 className="text-3xl font-bold mb-2">{artikel.title}</h1>
+                    <div className="text-gray-500 text-sm mb-4 flex items-center gap-2">
+                        {artikel.date}
+                        <span className="mx-1">•</span>
+                        By {artikel.namaPenulis}
+                    </div>
+                    <div className="text-gray-700 leading-relaxed whitespace-pre-line">
+                        {artikel.content}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

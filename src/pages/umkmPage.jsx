@@ -33,41 +33,6 @@ export default function UmkmPage() {
         }
     ];
 
-    // Contoh data UMKM
-    const umkmList = [
-        {
-            image: "/assets/produk1.jpg",
-            title: "Sagu Lezat",
-            sellerImage: "/assets/penjual1.jpg",
-            sellerName: "Budi",
-            description: "Sagu asli Papua, diolah secara tradisional dan higienis.",
-            whatsapp: "628123456789"
-        },
-        {
-            image: "/assets/produk2.jpg",
-            title: "Keripik Keladi",
-            sellerImage: "/assets/penjual2.jpg",
-            sellerName: "Mira",
-            description: "Keripik keladi renyah, camilan sehat khas Ramiki.",
-            whatsapp: "628987654321"
-        },
-        {
-            image: "/assets/produk3.jpg",
-            title: "Kopi Wondama",
-            sellerImage: "/assets/penjual3.jpg",
-            sellerName: "Pak Agus",
-            description: "Kopi robusta asli Wondama, aroma khas dan nikmat.",
-            whatsapp: "6281122334455"
-        },
-        {
-            image: "/assets/produk4.jpg",
-            title: "Kerajinan Anyaman",
-            sellerImage: "/assets/penjual4.jpg",
-            sellerName: "Ibu Rina",
-            description: "Anyaman tangan kreatif dari daun sagu dan pandan.",
-            whatsapp: "6285566778899"
-        }
-    ];
     // State untuk data UMKM yang akan diambil dari API
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -130,8 +95,8 @@ export default function UmkmPage() {
     const isMobile = useMediaQuery({ maxWidth: 1023 });
     const cardsToShow = isMobile ? products.slice(0, 4) : products.slice(0, 6);
 
-    console.log("Cards to show:", cardsToShow , "products:", products);
-    
+    console.log("Cards to show:", cardsToShow, "products:", products);
+
     return (
         <div className="w-full bg-white">
             <div className="mx-auto w-full max-w-7xl" style={{ width: '80%' }}>
@@ -197,7 +162,7 @@ export default function UmkmPage() {
                 {/* Tombol Lebih Lengkap */}
                 <div className="flex justify-center mb-12">
                     <a
-                        href="/umkm"
+                        href="/umkmlist" // Mengarahkan ke halaman daftar UMKM
                         className="inline-block bg-green-600 text-white px-8 py-3 rounded-lg shadow hover:bg-green-700 transition text-lg font-semibold"
                     >
                         Lihat Lebih Lengkap UMKM Kampung Ramiki

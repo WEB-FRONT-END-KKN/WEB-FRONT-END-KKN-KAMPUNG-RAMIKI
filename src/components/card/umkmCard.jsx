@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaWhatsapp } from 'react-icons/fa';
+import axios from 'axios';
 
 export default function UmkmCard({
     image,
@@ -8,17 +9,65 @@ export default function UmkmCard({
     sellerImage,
     sellerName,
     description,
-    // whatsapp
 }) {
-    // Batasi deskripsi maksimal 80 karakter
+    const [imgSrc, setImgSrc] = useState(null);
+    const [sellerImgSrc, setSellerImgSrc] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchImage = async (url, setState) => {
+            if (!url || typeof url !== 'string') {
+                setState(null);
+                return;
+            }
+            const fileIdMatch = url.match(/id=([^&]+)/);
+            if (!fileIdMatch || !fileIdMatch[1]) {
+                setState(url); // Asumsikan URL sudah direct
+                return;
+            }
+
+            const fileId = fileIdMatch[1];
+            console.log(`Fetching image with ID: ${fileId}`);
+            
+            const googleDriveUrl = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E`;
+
+            try {
+                const response = await axios.get(googleDriveUrl, { responseType: 'blob' });
+                const blobUrl = URL.createObjectURL(response.data);
+                setState(blobUrl);
+            } catch (error) {
+                console.error("Gagal mengambil gambar dari Google Drive:", error);
+                setState(null); // Set ke null jika ada error
+            }
+        };
+
+        const loadImages = async () => {
+            setLoading(true);
+            await Promise.all([
+                fetchImage(image, setImgSrc),
+                fetchImage(sellerImage, setSellerImgSrc)
+            ]);
+            setLoading(false);
+        };
+
+        loadImages();
+
+        return () => {
+            if (imgSrc && imgSrc.startsWith('blob:')) {
+                URL.revokeObjectURL(imgSrc);
+            }
+            if (sellerImgSrc && sellerImgSrc.startsWith('blob:')) {
+                URL.revokeObjectURL(sellerImgSrc);
+            }
+        };
+    }, [image, sellerImage]);
+
     const maxDesc = 80;
     const shortDesc =
         description.length > maxDesc
             ? description.slice(0, maxDesc).trim() + '...'
             : description;
 
-    // Buat slug untuk URL dengan pemisah '%'
-    // Mengubah spasi menjadi '-' dan menggabungkan dengan '%'
     const sellerSlug = sellerName.toLowerCase().trim().replace(/\s+/g, '-');
     const titleSlug = title.toLowerCase().trim().replace(/\s+/g, '-');
     const slug = `${sellerSlug}<>${titleSlug}`;
@@ -34,28 +83,44 @@ export default function UmkmCard({
                 }}
             >
                 {/* Gambar Produk */}
-                <img
-                    src={image}
-                    alt={title}
-                    className="w-full h-44 sm:h-48 object-cover"
-                />
+                <div className="w-full h-44 sm:h-48 flex items-center justify-center bg-gray-200">
+                    {loading ? (
+                        <span className="loading loading-ring loading-lg"></span>
+                    ) : (
+                        <img
+                            src={imgSrc || '/assets/placeholder.png'} // Fallback image
+                            alt={title}
+                            className="w-full h-full object-cover"
+                        />
+                    )}
+                </div>
+
                 {/* Judul Produk */}
                 <div className="px-4 pt-4">
                     <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 text-center">{title}</h3>
                 </div>
+
                 {/* Penjual */}
                 <div className="flex flex-col items-center mb-2">
-                    <img
-                        src={sellerImage}
-                        alt={sellerName}
-                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-green-500 mb-1"
-                    />
-                    <span className="text-sm font-semibold text-gray-700">{sellerName}</span>
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-green-500 flex items-center justify-center bg-gray-200">
+                        {loading ? (
+                            <span className="loading loading-ring loading-sm"></span>
+                        ) : (
+                            <img
+                                src={sellerImgSrc || '/assets/placeholder.png'} // Fallback image
+                                alt={sellerName}
+                                className="w-full h-full rounded-full object-cover"
+                            />
+                        )}
+                    </div>
+                    <span className="text-sm font-semibold text-gray-700 mt-1">{sellerName}</span>
                 </div>
+
                 {/* Deskripsi */}
                 <div className="px-4 mb-4 flex-1">
                     <p className="text-gray-600 text-center text-sm break-words">{shortDesc}</p>
                 </div>
+
                 {/* Tombol Detail */}
                 <div className="px-4 pb-4 flex justify-center">
                     <div
