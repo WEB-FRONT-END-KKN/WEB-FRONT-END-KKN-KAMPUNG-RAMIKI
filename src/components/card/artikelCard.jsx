@@ -22,11 +22,17 @@ export default function ArtikelCard({ image, title, excerpt, date }) {
     return (
         <div className="flex flex-col md:flex-row w-full bg-white rounded-lg shadow-md overflow-hidden mb-4 relative">
             {/* Gambar Artikel */}
-            <img
-                src={imgSrc}
-                alt={title}
-                className="w-full h-48 object-cover md:w-64 md:h-32"
-            />
+            <div className="w-full h-48 md:w-64 md:h-32 flex items-center justify-center bg-gray-100">
+                {imgSrc ? (
+                    <img
+                        src={imgSrc}
+                        alt={title}
+                        className="w-full h-48 object-cover md:w-64 md:h-32"
+                    />
+                ) : (
+                    <span className="loading loading-ring loading-lg"></span>
+                )}
+            </div>
             {/* Konten */}
             <div className="flex-1 p-4 flex flex-col justify-between z-10">
                 <div>

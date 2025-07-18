@@ -50,8 +50,8 @@ export default function UmkmPage() {
                 console.log("Data dari spreadsheet:", rows);
                 const dataPromises = rows.map(async (row) => {
                     const [
-                        timestamp, sellerName, sellerImageRaw, whatsapp, facebook,
-                        title, description, category, imageRaw, imagesRaw
+                        _timestamp, sellerName, sellerImageRaw, whatsapp, _facebook,
+                        title, description, _category, imageRaw, _imagesRaw
                     ] = row;
 
                     const sellerImagePromise = getGoogleDriveImageAsBlobUrl(sellerImageRaw);
@@ -88,7 +88,7 @@ export default function UmkmPage() {
                 if (p.sellerImage) URL.revokeObjectURL(p.sellerImage);
             });
         };
-    }, []); // Dependensi kosong agar hanya berjalan sekali
+    }, [products]); // Dependensi kosong agar hanya berjalan sekali
 
 
     // Responsive: 4 card di mobile, 6 di desktop
