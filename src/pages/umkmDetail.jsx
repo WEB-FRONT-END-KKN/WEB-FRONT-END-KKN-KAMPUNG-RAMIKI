@@ -22,6 +22,15 @@ const getGoogleDriveImageAsBlobUrl = async (url) => {
     }
 };
 
+// Mendapatkan semua gambar dari imageRaw (berisi banyak link, dipisah koma)
+const getAllImagesFromImageRaw = async (imageRaw) => {
+    if (!imageRaw || typeof imageRaw !== 'string') return [];
+    const urls = imageRaw.split(',').map(url => url.trim()).filter(Boolean);
+    const imagePromises = urls.map(url => getGoogleDriveImageAsBlobUrl(url));
+    const images = await Promise.all(imagePromises);
+    return images.filter(Boolean); // Hanya gambar yang berhasil
+};
+
 // Helper function untuk membuat slug
 const createSlug = (sellerName, title) => {
     if (!sellerName || !title) return '';
@@ -50,13 +59,15 @@ export default function UmkmDetail() {
                 let foundProductData = null;
                 for (const row of rows) {
                     const [
-                        , sellerName, sellerImageRaw, whatsapp, facebook,
-                        title, description, category, imageRaw, imagesRaw
+                        _timestamp, sellerName, sellerImageRaw, whatsapp, facebook,
+                        title, description, category, imageRaw, price
                     ] = row;
+                    console.log("timestamp : ", _timestamp, "sellerName : ", sellerName, "sellerImageRaw : ", sellerImageRaw, "whatsapp : ", whatsapp, "facebook : ", facebook,
+                        "title : ", title, "description : ", description, "category : ", category, "imageRaw : ", imageRaw, "price : ", price)
                     const productSlug = createSlug(sellerName, title);
                     if (productSlug === slug) {
                         foundProductData = {
-                            sellerName, sellerImageRaw, whatsapp, facebook, title, description, category, imageRaw, imagesRaw, slug: productSlug
+                            sellerName, sellerImageRaw, whatsapp, facebook, title, description, category, imageRaw, price, slug: productSlug
                         }
                         break;
                     }
@@ -111,6 +122,18 @@ export default function UmkmDetail() {
             }
         };
     }, [slug]);
+
+    useEffect(() => {
+        // Contoh penggunaan getAllImagesFromImageRaw
+        const imageRaw = "https://drive.google.com/open?id=1wP8Z5ke7D5tCWEM2lC-S4nV3cOFc-NYh, https://drive.google.com/open?id=1hnK_CmLBzuooUDxUGF4XP6qPA7CVYBok, https://drive.google.com/open?id=1o-ry3sJAt8ZqFV-Iiq3O6_3sc-NFDGfy, https://drive.google.com/open?id=1Yeup3rXdgfW7CDUZz5oZVKKyAybrQ31A";
+        getAllImagesFromImageRaw(imageRaw).then(images => {
+            // images adalah array blob url siap dipakai di <img src={...} />
+            setProduct(prev => ({
+                ...prev,
+                images
+            }));
+        });
+    }, []);
 
     if (error) {
         return <div className="text-center py-20 text-red-500">{error}</div>;

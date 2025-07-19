@@ -40,7 +40,7 @@ export default function UmkmPage() {
 
     useEffect(() => {
         const SPREADSHEET_ID = '12EGp8r-dF8FQujkSFip5HxlDazz1VJSfq8Uaki-zlqc';
-        const API_KEY = 'AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E'; // Ganti dengan API Key Anda
+        const API_KEY = 'AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E';
         const spreadsheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Form Responses 1?key=${API_KEY}`;
 
         const fetchAndProcessData = async () => {
@@ -59,7 +59,6 @@ export default function UmkmPage() {
 
                     const [sellerImage, image] = await Promise.all([sellerImagePromise, imagePromise]);
 
-                    // Hanya return produk yang valid (punya nama, judul, dan gambar utama)
                     if (sellerName && title && image) {
                         return {
                             sellerName, sellerImage, whatsapp, title, description, image,
@@ -68,7 +67,7 @@ export default function UmkmPage() {
                     return null;
                 });
 
-                const parsedData = (await Promise.all(dataPromises)).filter(Boolean); // Hapus produk yang null
+                const parsedData = (await Promise.all(dataPromises)).filter(Boolean);
                 setProducts(parsedData);
 
             } catch (err) {
@@ -88,7 +87,7 @@ export default function UmkmPage() {
                 if (p.sellerImage) URL.revokeObjectURL(p.sellerImage);
             });
         };
-    }, [products]); // Dependensi kosong agar hanya berjalan sekali
+    }, []); // <-- GANTI dari [products] menjadi []
 
 
     // Responsive: 4 card di mobile, 6 di desktop

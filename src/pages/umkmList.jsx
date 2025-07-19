@@ -32,8 +32,8 @@ export default function UmkmList() {
                 const rows = response.data.values.slice(1);
                 const dataPromises = rows.map(async (row) => {
                     const [
-                        timestamp, sellerName, sellerImageRaw, whatsapp, facebook,
-                        title, description, category, imageRaw, imagesRaw
+                        timestamp, sellerName, sellerImageRaw, whatsapp, _facebook,
+                        title, description, _category, imageRaw, _imagesRaw
                     ] = row;
 
                     const sellerImage = getGoogleDriveImageUrl(sellerImageRaw);
