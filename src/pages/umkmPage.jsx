@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import UmkmCard from '../components/card/umkmCard'
 import { useMediaQuery } from 'react-responsive';
+import { Helmet } from 'react-helmet';
 
 // --- Helper function untuk mengambil gambar sebagai data & membuat URL ---
 const getGoogleDriveImageAsBlobUrl = async (url) => {
@@ -98,6 +99,14 @@ export default function UmkmPage() {
 
     return (
         <div className="w-full bg-white">
+            <Helmet>
+                <title>UMKM Kampung Ramiki | Produk Lokal & Koperasi</title>
+                <meta name="description" content="Daftar UMKM Kampung Ramiki, Teluk Wondama Papua Barat. Temukan produk lokal, hasil bumi, kerajinan, dan koperasi masyarakat Ramiki." />
+                <meta name="keywords" content="UMKM Kampung Ramiki, Produk Lokal, Koperasi, Teluk Wondama, Papua Barat, Sagu, Keladi, Kerajinan" />
+                <meta property="og:title" content="UMKM Kampung Ramiki" />
+                <meta property="og:description" content="Daftar UMKM Kampung Ramiki, Teluk Wondama Papua Barat. Temukan produk lokal, hasil bumi, kerajinan, dan koperasi masyarakat Ramiki." />
+                <meta property="og:type" content="website" />
+            </Helmet>
             <div className="mx-auto w-full max-w-7xl" style={{ width: '80%' }}>
                 {/* Judul */}
                 <h1 className="text-3xl font-bold text-center mb-4 mt-8">UMKM Kampung Ramiki</h1>
