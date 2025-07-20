@@ -23,13 +23,13 @@ const getGoogleDriveImageAsBlobUrl = async (url) => {
 };
 
 // Mendapatkan semua gambar dari imageRaw (berisi banyak link, dipisah koma)
-const getAllImagesFromImageRaw = async (imageRaw) => {
-    if (!imageRaw || typeof imageRaw !== 'string') return [];
-    const urls = imageRaw.split(',').map(url => url.trim()).filter(Boolean);
-    const imagePromises = urls.map(url => getGoogleDriveImageAsBlobUrl(url));
-    const images = await Promise.all(imagePromises);
-    return images.filter(Boolean); // Hanya gambar yang berhasil
-};
+// const getAllImagesFromImageRaw = async (imageRaw) => {
+//     if (!imageRaw || typeof imageRaw !== 'string') return [];
+//     const urls = imageRaw.split(',').map(url => url.trim()).filter(Boolean);
+//     const imagePromises = urls.map(url => getGoogleDriveImageAsBlobUrl(url));
+//     const images = await Promise.all(imagePromises);
+//     return images.filter(Boolean); // Hanya gambar yang berhasil
+// };
 
 // Helper function untuk membuat slug
 const createSlug = (sellerName, title) => {
@@ -45,6 +45,8 @@ export default function UmkmDetail() {
     const [product, setProduct] = useState(null);
     const [error, setError] = useState(null);
     const [mainImage, setMainImage] = useState(0);
+    const [gallery, setGallery] = useState([]); // array hasil get blob
+    const [galleryLoading, setGalleryLoading] = useState(true);
 
     useEffect(() => {
         const SPREADSHEET_ID = '12EGp8r-dF8FQujkSFip5HxlDazz1VJSfq8Uaki-zlqc';
@@ -62,8 +64,6 @@ export default function UmkmDetail() {
                         _timestamp, sellerName, sellerImageRaw, whatsapp, facebook,
                         title, description, category, imageRaw, price
                     ] = row;
-                    console.log("timestamp : ", _timestamp, "sellerName : ", sellerName, "sellerImageRaw : ", sellerImageRaw, "whatsapp : ", whatsapp, "facebook : ", facebook,
-                        "title : ", title, "description : ", description, "category : ", category, "imageRaw : ", imageRaw, "price : ", price)
                     const productSlug = createSlug(sellerName, title);
                     if (productSlug === slug) {
                         foundProductData = {
@@ -74,82 +74,60 @@ export default function UmkmDetail() {
                 }
 
                 if (foundProductData) {
-                    setProduct({
-                        ...foundProductData,
-                        sellerImage: null,
-                        images: [],
-                    });
+                    setProduct(foundProductData);
 
-                    const sellerImagePromise = getGoogleDriveImageAsBlobUrl(foundProductData.sellerImageRaw);
-                    const imagePromise = getGoogleDriveImageAsBlobUrl(foundProductData.imageRaw);
-                    const galleryImagesPromises = foundProductData.imagesRaw
-                        ? foundProductData.imagesRaw.split(',').map(url => getGoogleDriveImageAsBlobUrl(url.trim()))
+                    // GET sellerImage dari Google Drive API
+                    let sellerImageUrl = null;
+                    if (foundProductData.sellerImageRaw) {
+                        sellerImageUrl = await getGoogleDriveImageAsBlobUrl(foundProductData.sellerImageRaw);
+                    }
+
+                    // Split imageRaw jadi array
+                    const urls = foundProductData.imageRaw
+                        ? foundProductData.imageRaw.split(',').map(url => url.trim()).filter(Boolean)
                         : [];
 
-                    const [sellerImage, mainImg, ...galleryImages] = await Promise.all([
-                        sellerImagePromise,
-                        imagePromise,
-                        ...galleryImagesPromises
-                    ]);
+                    // Ambil semua gambar satu per satu
+                    setGalleryLoading(true);
+                    const imagePromises = urls.map(url => getGoogleDriveImageAsBlobUrl(url));
+                    const images = await Promise.all(imagePromises);
+                    setGallery(images);
+                    setGalleryLoading(false);
 
+                    // Set sellerImage ke product
                     setProduct(prev => ({
                         ...prev,
-                        sellerImage,
-                        images: [mainImg, ...galleryImages.filter(img => img && img !== mainImg)].filter(Boolean)
+                        sellerImage: sellerImageUrl
                     }));
-
                 } else {
                     setProduct(null);
+                    setGallery([]);
                 }
 
             } catch (err) {
                 console.error("Gagal memuat atau memproses data:", err);
                 setError("Gagal memuat data produk.");
+                setGallery([]);
             }
         };
 
         fetchAndProcessData();
-
-        // Cleanup
-        return () => {
-            if (product) {
-                if (product.sellerImage) URL.revokeObjectURL(product.sellerImage);
-                if (product.images) {
-                    product.images.forEach(img => {
-                        if (img) URL.revokeObjectURL(img)
-                    });
-                }
-            }
-        };
     }, [slug]);
 
-    useEffect(() => {
-        // Contoh penggunaan getAllImagesFromImageRaw
-        const imageRaw = "https://drive.google.com/open?id=1wP8Z5ke7D5tCWEM2lC-S4nV3cOFc-NYh, https://drive.google.com/open?id=1hnK_CmLBzuooUDxUGF4XP6qPA7CVYBok, https://drive.google.com/open?id=1o-ry3sJAt8ZqFV-Iiq3O6_3sc-NFDGfy, https://drive.google.com/open?id=1Yeup3rXdgfW7CDUZz5oZVKKyAybrQ31A";
-        getAllImagesFromImageRaw(imageRaw).then(images => {
-            // images adalah array blob url siap dipakai di <img src={...} />
-            setProduct(prev => ({
-                ...prev,
-                images
-            }));
-        });
-    }, []);
+    // Slide handler
+    const handleNext = () => {
+        setMainImage((prev) => (prev + 1) % gallery.length);
+    };
+    const handlePrev = () => {
+        setMainImage((prev) => (prev - 1 + gallery.length) % gallery.length);
+    };
 
     if (error) {
         return <div className="text-center py-20 text-red-500">{error}</div>;
     }
-
     if (!product) {
         return <div className="text-center py-10">Memuat data produk...</div>;
     }
-
-    const handleNext = () => {
-        setMainImage((prev) => (prev + 1) % product.images.length);
-    };
-
-    const handlePrev = () => {
-        setMainImage((prev) => (prev - 1 + product.images.length) % product.images.length);
-    };
 
     return (
         <>
@@ -182,13 +160,13 @@ export default function UmkmDetail() {
                     <div className="w-full lg:w-2/3">
                         <div className="relative mb-4">
                             <div className="w-full h-96 flex justify-center items-center bg-gray-200 rounded-lg shadow-lg">
-                                {!product.images || product.images.length === 0 ? (
+                                {galleryLoading || !gallery[mainImage] ? (
                                     <span className="loading loading-infinity loading-lg"></span>
                                 ) : (
-                                    <img src={product.images[mainImage]} alt={product.title} className="w-full h-full object-cover rounded-lg" />
+                                    <img src={gallery[mainImage]} alt={product.title} className="w-full h-full object-cover rounded-lg" />
                                 )}
                             </div>
-                            {product.images && product.images.length > 1 && (
+                            {gallery.length > 1 && (
                                 <>
                                     <button onClick={handlePrev} className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md hover:bg-white">
                                         <FaChevronLeft size={24} />
@@ -200,14 +178,19 @@ export default function UmkmDetail() {
                             )}
                         </div>
                         <div className="flex gap-2 justify-center flex-wrap">
-                            {product.images.map((img, idx) => (
-                                img && <img
-                                    key={idx}
-                                    src={img}
-                                    alt={`thumb-${idx}`}
-                                    className={`w-20 h-20 object-cover rounded-md cursor-pointer border-2 ${mainImage === idx ? 'border-blue-500' : 'border-transparent'}`}
-                                    onClick={() => setMainImage(idx)}
-                                />
+                            {gallery.map((img, idx) => (
+                                <div key={idx}>
+                                    {!img ? (
+                                        <span className="loading loading-ring loading-md"></span>
+                                    ) : (
+                                        <img
+                                            src={img}
+                                            alt={`thumb-${idx}`}
+                                            className={`w-20 h-20 object-cover rounded-md cursor-pointer border-2 ${mainImage === idx ? 'border-blue-500' : 'border-transparent'}`}
+                                            onClick={() => setMainImage(idx)}
+                                        />
+                                    )}
+                                </div>
                             ))}
                         </div>
                     </div>

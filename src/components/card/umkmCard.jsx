@@ -25,26 +25,28 @@ export default function UmkmCard({
                 setState(url); // Asumsikan URL sudah direct
                 return;
             }
-
             const fileId = fileIdMatch[1];
-            console.log(`Fetching image with ID: ${fileId}`);
-            
             const googleDriveUrl = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E`;
-
             try {
                 const response = await axios.get(googleDriveUrl, { responseType: 'blob' });
                 const blobUrl = URL.createObjectURL(response.data);
                 setState(blobUrl);
             } catch (error) {
-                console.error("Gagal mengambil gambar dari Google Drive:", error);
-                setState(null); // Set ke null jika ada error
+                setState(null);
             }
+        };
+
+        const getFirstImageFromRaw = (raw) => {
+            if (!raw || typeof raw !== 'string') return '';
+            const urls = raw.split(',').map(url => url.trim()).filter(Boolean);
+            return urls[0] || '';
         };
 
         const loadImages = async () => {
             setLoading(true);
+            // Ambil gambar pertama dari image string
             await Promise.all([
-                fetchImage(image, setImgSrc),
+                fetchImage(getFirstImageFromRaw(image), setImgSrc),
                 fetchImage(sellerImage, setSellerImgSrc)
             ]);
             setLoading(false);
