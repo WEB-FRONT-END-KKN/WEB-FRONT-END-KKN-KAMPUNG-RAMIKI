@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import UmkmCard from '../components/card/umkmCard';
+import { Helmet } from 'react-helmet';
 
 // Helper function untuk mengambil URL gambar dari Google Drive
 const getGoogleDriveImageUrl = (url) => {
@@ -105,6 +105,14 @@ export default function UmkmList() {
 
     return (
         <div className="w-4/5 mx-auto py-8">
+            <Helmet>
+                <title>Daftar UMKM Kampung Ramiki | Produk Unggulan</title>
+                <meta name="description" content="Lihat daftar produk UMKM unggulan Kampung Ramiki, Teluk Wondama Papua Barat. Cari produk, penjual, dan temukan potensi lokal Ramiki." />
+                <meta name="keywords" content="Daftar UMKM, Kampung Ramiki, Produk Unggulan, Teluk Wondama, Papua Barat, Penjual, Potensi Lokal" />
+                <meta property="og:title" content="Daftar UMKM Kampung Ramiki" />
+                <meta property="og:description" content="Lihat daftar produk UMKM unggulan Kampung Ramiki, Teluk Wondama Papua Barat. Cari produk, penjual, dan temukan potensi lokal Ramiki." />
+                <meta property="og:type" content="website" />
+            </Helmet>
             <h1 className="text-3xl font-bold text-center mb-8">Daftar UMKM Kampung Ramiki</h1>
             {/* Search & Sort */}
             <div className="flex flex-col md:flex-row gap-4 mb-6 items-center">

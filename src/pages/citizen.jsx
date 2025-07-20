@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Legend } from "recharts";
 import axios from "axios";
 import { FaUsers } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28DFF", "#FF69B4", "#A52A2A"];
 
@@ -79,6 +80,14 @@ export default function Citizen() {
 
     return (
         <div className="container mx-auto py-10 px-6 flex flex-col items-center">
+            <Helmet>
+                <title>Data Masyarakat Kampung Ramiki | Statistik & Demografi</title>
+                <meta name="description" content="Statistik dan data demografi masyarakat Kampung Ramiki, Teluk Wondama Papua Barat. Lihat grafik umur, suku, agama, jenis kelamin, dan kepala keluarga." />
+                <meta name="keywords" content="Masyarakat Kampung Ramiki, Statistik, Demografi, Teluk Wondama, Papua Barat, Suku, Agama, Kepala Keluarga, Data Desa" />
+                <meta property="og:title" content="Data Masyarakat Kampung Ramiki" />
+                <meta property="og:description" content="Statistik dan data demografi masyarakat Kampung Ramiki, Teluk Wondama Papua Barat. Lihat grafik umur, suku, agama, jenis kelamin, dan kepala keluarga." />
+                <meta property="og:type" content="website" />
+            </Helmet>
             <h1 className="text-3xl font-bold text-center mb-8">Data Masyarakat Kampung Ramiki</h1>
 
             {/* Dropdown untuk mobile */}

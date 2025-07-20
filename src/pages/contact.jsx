@@ -1,10 +1,19 @@
 import React from 'react';
 import { ContactBanner, TransformationInformation } from '../components';
-import { FaEnvelope, FaTiktok, FaInstagram } from 'react-icons/fa'; // Import React Icons
+import { FaEnvelope, FaTiktok, FaInstagram } from 'react-icons/fa';
+import { Helmet } from 'react-helmet';
 
 export default function Contact() {
     return (
         <div>
+            <Helmet>
+                <title>Kontak Kampung Ramiki | KKN, UMKM & Koperasi</title>
+                <meta name="description" content="Hubungi kelompok KKN Kampung Ramiki, Teluk Wondama Papua Barat. Tersedia kontak email, TikTok, Instagram, dan informasi transformasi UMKM & koperasi." />
+                <meta name="keywords" content="Kontak Kampung Ramiki, KKN, UMKM, Koperasi, Teluk Wondama, Papua Barat, Email, TikTok, Instagram" />
+                <meta property="og:title" content="Kontak Kampung Ramiki" />
+                <meta property="og:description" content="Hubungi kelompok KKN Kampung Ramiki, Teluk Wondama Papua Barat. Tersedia kontak email, TikTok, Instagram, dan informasi transformasi UMKM & koperasi." />
+                <meta property="og:type" content="website" />
+            </Helmet>
             <ContactBanner />
             <TransformationInformation />
 

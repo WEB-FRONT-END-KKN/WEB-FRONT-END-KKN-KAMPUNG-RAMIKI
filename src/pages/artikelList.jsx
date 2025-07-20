@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ArtikelCard from '../components/card/artikelCard';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { Helmet } from 'react-helmet';
 
 const spreadsheetId = '10oEozEsvF41EpVQEcZaaFOsOSc6YRwiPl_HHKPxrqgI';
 const apiKey = 'AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E';
@@ -73,6 +74,14 @@ export default function ArtikelList() {
 
   return (
     <div className="w-4/5 mx-auto py-8">
+      <Helmet>
+        <title>Daftar Artikel Kampung Ramiki | UMKM & Koperasi</title>
+        <meta name="description" content="Kumpulan artikel terbaru tentang UMKM, koperasi, potensi lokal, dan kegiatan KKN di Kampung Ramiki, Teluk Wondama, Papua Barat." />
+        <meta name="keywords" content="Artikel, Kampung Ramiki, UMKM, Koperasi, Teluk Wondama, Papua Barat, KKN, Berita, Potensi Lokal" />
+        <meta property="og:title" content="Daftar Artikel Kampung Ramiki" />
+        <meta property="og:description" content="Kumpulan artikel terbaru tentang UMKM, koperasi, potensi lokal, dan kegiatan KKN di Kampung Ramiki, Teluk Wondama, Papua Barat." />
+        <meta property="og:type" content="website" />
+      </Helmet>
       {/* Search & Sort */}
       <div className="flex flex-col md:flex-row gap-4 mb-6 items-center">
         <input

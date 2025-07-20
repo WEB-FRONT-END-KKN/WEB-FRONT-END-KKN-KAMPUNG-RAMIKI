@@ -33,6 +33,7 @@ export default function UmkmCard({
                 setState(blobUrl);
             } catch (error) {
                 setState(null);
+                console.error("Error fetching image:", error);
             }
         };
 
