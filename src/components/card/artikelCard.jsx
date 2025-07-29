@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function ArtikelCard({ image, title, excerpt, date }) {
+export default function ArtikelCard({ image, title, excerpt, date, kategori }) {
     const [imgSrc, setImgSrc] = useState(image);
     const [loading, setLoading] = useState(true);
 
@@ -44,13 +44,15 @@ export default function ArtikelCard({ image, title, excerpt, date }) {
             {/* Konten */}
             <div className="flex-1 p-4 flex flex-col justify-between z-10">
                 <div>
-                    <h2
-                        className="text-lg font-bold mb-1 truncate"
-                        title={title}
-                    >
+                    <h2 className="text-lg font-bold mb-1 truncate" title={title}>
                         {title}
                     </h2>
                     <p className="text-gray-600 text-sm mb-2">{excerpt}</p>
+                    {kategori && (
+                        <span className="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full font-semibold mb-2">
+                            {kategori}
+                        </span>
+                    )}
                 </div>
                 <span className="text-xs text-gray-400">{date}</span>
             </div>

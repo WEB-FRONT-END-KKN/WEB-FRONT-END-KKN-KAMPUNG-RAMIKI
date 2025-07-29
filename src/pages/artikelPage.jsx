@@ -18,7 +18,7 @@ export default function ArtikelPage() {
         axios.get(spreadsheetUrl).then((response) => {
             const rows = response.data.values.slice(1);
             const parsedData = rows.map((row) => {
-                const [timestamp, namaPenulis, judulBerita, gambarKontent, kontenBerita] = row;
+                const [timestamp, namaPenulis, judulBerita, gambarKontent, kontenBerita, kategori] = row;
                 const date = timestamp ? timestamp.split(' ')[0] : '';
                 const images = gambarKontent
                     ? gambarKontent.split(',').map(img => img.trim())
@@ -33,6 +33,7 @@ export default function ArtikelPage() {
                     images,
                     content: kontenBerita,
                     slug,
+                    kategori: kategori || 'Tanpa Kategori'
                 };
             });
             const found = parsedData.find(a => a.slug === nama);
@@ -133,10 +134,17 @@ export default function ArtikelPage() {
                         )}
                     </div>
                     <h1 className="text-3xl font-bold mb-2">{artikel.title}</h1>
-                    <div className="text-gray-500 text-sm mb-4 flex items-center gap-2">
-                        {artikel.date}
-                        <span className="mx-1">•</span>
-                        By {artikel.namaPenulis}
+                    <div className="flex flex-wrap items-center gap-2 mb-4">
+                        {artikel.kategori && (
+                            <span className="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full font-semibold">
+                                {artikel.kategori}
+                            </span>
+                        )}
+                        <span className="text-gray-500 text-sm flex items-center gap-2">
+                            {artikel.date}
+                            <span className="mx-1">•</span>
+                            By {artikel.namaPenulis}
+                        </span>
                     </div>
                     <div className="text-gray-700 leading-relaxed whitespace-pre-line">
                         {artikel.content}
