@@ -5,6 +5,10 @@ const images = [
     "/assets/tourguide1.jpg",
     "/assets/tourguide2.jpg",
     "/assets/tourguide3.jpg",
+    "/assets/tourguide4.jpg",
+    "/assets/tourguide5.jpg",
+    "/assets/tourguide6.jpg",
+    "/assets/tourguide7.jpg",
 ];
 
 export default function ParawisataSection() {
@@ -25,7 +29,7 @@ export default function ParawisataSection() {
                     <img
                         src={images[mainIdx]}
                         alt={`Pariwisata ${mainIdx + 1}`}
-                        className="object-cover w-full h-full"
+                        className="object-cover h-full"
                     />
                     {/* Slide buttons */}
                     <button

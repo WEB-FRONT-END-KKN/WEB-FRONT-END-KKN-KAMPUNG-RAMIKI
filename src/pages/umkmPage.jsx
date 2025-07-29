@@ -20,17 +20,27 @@ export default function UmkmPage() {
         {
             foto: "/assets/ketua.jpg",
             jabatan: "Ketua",
-            nama: "Andi Saputra"
+            nama: "Max Sawaki"
+        },
+        {
+            foto: "/assets/wakilKetuaBidangUsaha.jpg",
+            jabatan: "Wakil Ketua Bidang Usaha",
+            nama: "Ronal Dubri"
+        },
+        {
+            foto: "/assets/wakilKetuaBidangAnggota.jpg",
+            jabatan: "Wakil Ketua Bidang Anggota",
+            nama: "Yulianus Tawaru"
         },
         {
             foto: "/assets/sekretaris.jpg",
             jabatan: "Sekretaris",
-            nama: "Siti Aminah"
+            nama: "Tania Nunanki"
         },
         {
             foto: "/assets/bendahara.jpg",
             jabatan: "Bendahara",
-            nama: "Joko Santoso"
+            nama: "Marice Ayomi"
         }
     ];
 
@@ -106,6 +116,20 @@ export default function UmkmPage() {
                 <meta property="og:title" content="UMKM Kampung Ramiki" />
                 <meta property="og:description" content="Daftar UMKM Kampung Ramiki, Teluk Wondama Papua Barat. Temukan produk lokal, hasil bumi, kerajinan, dan koperasi masyarakat Ramiki." />
                 <meta property="og:type" content="website" />
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "Koperasi Merah Putih Kampung Ramiki",
+                        "description": "Struktur pengurus Koperasi Merah Putih Kampung Ramiki, Teluk Wondama Papua Barat.",
+                        "member": strukturKoperasi.map(item => ({
+                            "@type": "Person",
+                            "name": item.nama,
+                            "jobTitle": item.jabatan,
+                            "image": typeof item.foto === "string" && item.foto.startsWith("/") ? `${window.location.origin}${item.foto}` : item.foto
+                        }))
+                    })}
+                </script>
             </Helmet>
             <div className="mx-auto w-full max-w-7xl" style={{ width: '80%' }}>
                 {/* Judul */}
@@ -140,9 +164,9 @@ export default function UmkmPage() {
                     {/* Struktur Koperasi */}
                     <div className="flex flex-wrap justify-center gap-8">
                         {strukturKoperasi.map((item, idx) => (
-                            <div key={idx} className="flex flex-col items-center">
+                            <div key={idx} className="flex flex-col items-center w-30">
                                 <img src={item.foto} alt={item.nama} className="w-20 h-20 rounded-full object-cover border-2 border-green-500 mb-2" />
-                                <span className="font-bold">{item.jabatan}</span>
+                                <span className="font-bold text-center">{item.jabatan}</span>
                                 <span className="text-gray-700">{item.nama}</span>
                             </div>
                         ))}
