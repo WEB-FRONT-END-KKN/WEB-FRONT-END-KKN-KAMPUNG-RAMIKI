@@ -4,8 +4,8 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import axios from 'axios';
 import { Helmet } from 'react-helmet'; // Tambahkan ini
 
-const spreadsheetId = '10oEozEsvF41EpVQEcZaaFOsOSc6YRwiPl_HHKPxrqgI';
-const apiKey = 'AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E';
+const spreadsheetId = import.meta.env.VITE_GOOGLE_SHEETS_ID_ARTIKEL;
+const apiKey = import.meta.env.VITE_API_KEY;
 
 export default function ArtikelPage() {
     const { nama } = useParams();
@@ -57,7 +57,6 @@ export default function ArtikelPage() {
                             `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${apiKey}`,
                             { responseType: 'blob', timeout: 3000 }
                         );
-                        console.log("Response from Google Drive:", res);
                         return URL.createObjectURL(res.data);
                     } catch {
                         return null;

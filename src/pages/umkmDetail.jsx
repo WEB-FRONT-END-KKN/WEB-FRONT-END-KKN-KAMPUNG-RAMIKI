@@ -49,8 +49,8 @@ export default function UmkmDetail() {
     const [galleryLoading, setGalleryLoading] = useState(true);
 
     useEffect(() => {
-        const SPREADSHEET_ID = '12EGp8r-dF8FQujkSFip5HxlDazz1VJSfq8Uaki-zlqc';
-        const API_KEY = 'AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E';
+        const SPREADSHEET_ID = import.meta.env.VITE_GOOGLE_SHEETS_ID_UMKM;
+        const API_KEY = import.meta.env.VITE_API_KEY;
         const spreadsheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Form Responses 1?key=${API_KEY}`;
 
         const fetchAndProcessData = async () => {

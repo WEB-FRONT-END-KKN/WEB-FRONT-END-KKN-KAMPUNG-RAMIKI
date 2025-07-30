@@ -50,15 +50,14 @@ export default function UmkmPage() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const SPREADSHEET_ID = '12EGp8r-dF8FQujkSFip5HxlDazz1VJSfq8Uaki-zlqc';
-        const API_KEY = 'AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E';
+        const SPREADSHEET_ID = import.meta.env.VITE_GOOGLE_SHEETS_ID_UMKM;
+        const API_KEY = import.meta.env.VITE_API_KEY;
         const spreadsheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Form Responses 1?key=${API_KEY}`;
 
         const fetchAndProcessData = async () => {
             try {
                 const response = await axios.get(spreadsheetUrl);
                 const rows = response.data.values.slice(1);
-                console.log("Data dari spreadsheet:", rows);
                 const dataPromises = rows.map(async (row) => {
                     const [
                         _timestamp, sellerName, sellerImageRaw, whatsapp, _facebook,

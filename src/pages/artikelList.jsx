@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import ArtikelCard from '../components/card/artikelCard';
+// import process from 'dotenv'
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 
-const spreadsheetId = '10oEozEsvF41EpVQEcZaaFOsOSc6YRwiPl_HHKPxrqgI';
-const apiKey = 'AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E';
+const spreadsheetId = import.meta.env.VITE_GOOGLE_SHEETS_ID_ARTIKEL;
+const apiKey = import.meta.env.VITE_API_KEY;
+
 
 export default function ArtikelList() {
   const [artikelData, setArtikelData] = useState([]);

@@ -26,7 +26,8 @@ export default function UmkmCard({
                 return;
             }
             const fileId = fileIdMatch[1];
-            const googleDriveUrl = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E`;
+            const apiKey = import.meta.env.VITE_API_KEY; // Ambil API key dari environment variable
+            const googleDriveUrl = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${apiKey}`;
             try {
                 const response = await axios.get(googleDriveUrl, { responseType: 'blob' });
                 const blobUrl = URL.createObjectURL(response.data);

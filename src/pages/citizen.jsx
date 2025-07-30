@@ -11,9 +11,18 @@ export default function Citizen() {
     const [selectedData, setSelectedData] = useState("umur");
     const [showPapuaDetail, setShowPapuaDetail] = useState(false);
 
+    // Tambahkan state untuk cek mobile
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
     useEffect(() => {
-        const spreadsheetId = "144pLSC4_7trcyH5n_dEIwckFYwsgefwzOdtbi1eR-lc";
-        const apiKey = "AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E";
+        const handleResize = () => setIsMobile(window.innerWidth < 640);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
+        const spreadsheetId = import.meta.env.VITE_GOOGLE_SHEETS_ID_CITIZEN;
+        const apiKey = import.meta.env.VITE_API_KEY;
         const spreadsheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Form Responses 1?key=${apiKey}`;
 
         axios.get(spreadsheetUrl).then((response) => {
@@ -23,6 +32,8 @@ export default function Citizen() {
                 return { nama, tanggalLahir, namaKepalaKeluarga, jenisKelamin, agama, suku, papua, nonPapua };
             });
             setData(parsedData);
+        }).catch((error) => {
+            console.error("Error fetching data from Google Sheets:", error);
         });
     }, []);
 
@@ -199,12 +210,15 @@ export default function Citizen() {
 
             {/* Pie Chart untuk selain kepala keluarga */}
             {(selectedData !== "kepalaKeluarga") && (
-                <PieChart width={400} height={600}>
+                <PieChart
+                    width={isMobile ? 400 : 800}
+                    height={isMobile ? 300 : 600}
+                >
                     <Pie
                         data={chartData}
                         cx="50%"
                         cy="50%"
-                        outerRadius={150}
+                        outerRadius={isMobile ? 80 : 150}
                         fill="#8884d8"
                         dataKey="value"
                         label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}

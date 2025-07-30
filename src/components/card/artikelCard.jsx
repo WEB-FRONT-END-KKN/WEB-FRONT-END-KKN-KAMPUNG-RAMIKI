@@ -10,8 +10,9 @@ export default function ArtikelCard({ image, title, excerpt, date, kategori }) {
         const match = image && image.match(/id=([a-zA-Z0-9_-]+)/);
         if (match) {
             const fileId = match[1];
+            const apiKey = import.meta.env.VITE_API_KEY; // Ambil API key dari environment variable
             axios.get(
-                `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=AIzaSyCcHVF-YTiEhhfZUDsN8o-95EqAuKSyM9E`,
+                `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${apiKey}`,
                 { responseType: 'blob' }
             ).then(res => {
                 setImgSrc(URL.createObjectURL(res.data));
