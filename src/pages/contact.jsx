@@ -42,17 +42,29 @@ export default function Contact() {
 
                 {/* Kontak Media */}
                 <div className="flex flex-col items-center gap-4">
-                    <div className="flex items-center gap-2 text-lg text-gray-700">
-                        <FaEnvelope className="text-blue-500 w-6 h-6" />
-                        <span>email_kelompok_kkn@example.com</span>
+                    {/* Tombol Instagram */}
+                    <div className="text-center">
+                        <a
+                            href="https://www.instagram.com/kkn_ramiki/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center px-6 py-3 bg-pink-500 text-white rounded-lg shadow-lg hover:bg-white hover:text-pink-500 transition"
+                        >
+                            <FaInstagram className="w-6 h-6 mr-2" /> {/* Logo Instagram */}
+                            Follow us for more @kkn_ramiki
+                        </a>
                     </div>
-                    <div className="flex items-center gap-2 text-lg text-gray-700">
-                        <FaTiktok className="text-black w-6 h-6" />
-                        <span>@kkn.ramiki</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-lg text-gray-700">
-                        <FaInstagram className="text-pink-500 w-6 h-6" />
-                        <span>@kkn_ramiki</span>
+                    {/* Tombol Instagram */}
+                    <div className="text-center">
+                        <a
+                            href="https://www.tiktok.com/@kkn.ramiki"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center px-6 py-3 bg-black text-white rounded-lg shadow-lg hover:bg-white hover:text-black transition"
+                        >
+                            <FaTiktok className="w-6 h-6 mr-2" /> {/* Logo TikTok */}
+                            Follow us for more @kkn.ramiki
+                        </a>
                     </div>
                 </div>
             </div>

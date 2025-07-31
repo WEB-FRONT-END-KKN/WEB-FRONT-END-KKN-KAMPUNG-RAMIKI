@@ -29,10 +29,10 @@ export default function ContactBanner() {
                         <strong>Lokasi:</strong> Kantor Desa Ramiki, Kabupaten Teluk Wondama, Papua Barat
                     </p>
                     <p className="text-gray-700 text-lg mb-2">
-                        <strong>Email:</strong> desa.ramiki@example.com
+                        <strong>Email:</strong> ramikidesa@gmail.com
                     </p>
                     <p className="text-gray-700 text-lg">
-                        <strong>Kontak:</strong> +62 812-3456-7890
+                        <strong>Kontak:</strong> +62 812 4893 1154
                     </p>
                 </div>
             </div>

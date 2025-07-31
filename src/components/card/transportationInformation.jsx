@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaShip, FaPlane } from 'react-icons/fa';
 
 export default function TransportationInformation() {
     return (
@@ -19,31 +20,54 @@ export default function TransportationInformation() {
 
                 {/* Penjelasan Transportasi */}
                 <div className="order-2 md:order-1">
-                    <h2 className="text-2xl font-bold mb-4">Transportasi Menuju Kampung Wasior</h2>
-                    <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                        Kampung Wasior dapat diakses melalui transportasi laut menggunakan kapal atau melalui transportasi udara. 
-                        Kapal Pelni adalah salah satu pilihan utama untuk perjalanan laut, sementara penerbangan tersedia melalui 
-                        maskapai lokal yang melayani rute ke Wasior.
-                    </p>
+                    <div className="p-6 bg-white rounded-lg shadow-md">
+                        <h2 className="text-2xl font-bold mb-6">
+                            Transportasi Laut dan Udara Menuju Wasior
+                        </h2>
 
-                    {/* Tombol Traveloka dan Pelni */}
-                    <div className="flex gap-4">
-                        <a
-                            href="https://www.traveloka.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition"
-                        >
-                            Traveloka
-                        </a>
-                        <a
-                            href="https://www.pelni.co.id/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-6 py-3 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition"
-                        >
-                            Pelni
-                        </a>
+                        <section className="mb-8">
+                            <h3 className="flex items-center text-xl font-semibold mb-4">
+                                <FaShip className="text-green-500 mr-2" />
+                                Transportasi Laut
+                            </h3>
+                            <ul className="list-disc list-inside space-y-3 text-gray-700">
+                                <li>
+                                    <strong className="font-semibold">Kapal Gunung Dempo (Pelni)</strong>:
+                                    kapal besar yang melayani rute ke Wasior. Informasi jadwal dan
+                                    pemesanan tiket ada di {''}
+                                    <a
+                                        href="https://www.pelni.co.id"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 hover:underline"
+                                    >
+                                        www.pelni.co.id
+                                    </a>
+                                    .
+                                </li>
+                                <li>
+                                    <strong className="font-semibold">Kapal Margaret</strong>: kapal
+                                    kecil yang juga berangkat menuju Wasior.
+                                </li>
+                                <li>
+                                    <strong className="font-semibold">Kapal Express</strong>: kapal
+                                    cepat yang langsung berlayar ke Pelabuhan Anggrem, Manokwari,
+                                    sebagai titik awal sebelum melanjutkan ke Wasior.
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 className="flex items-center text-xl font-semibold mb-4">
+                                <FaPlane className="text-blue-500 mr-2" />
+                                Transportasi Udara
+                            </h3>
+                            <p className="text-gray-700">
+                                Wasior juga dapat dijangkau melalui penerbangan domestik yaitu pesawat susi air yang dilayani
+                                maskapai lokal. Kamu biasanya akan transit di Manokwari sebelum terbang
+                                ke Wasior setiap senin rabu jum'at. Sedangkan Nabire ke Wasior setiap kamis.
+                            </p>
+                        </section>
                     </div>
                 </div>
             </div>

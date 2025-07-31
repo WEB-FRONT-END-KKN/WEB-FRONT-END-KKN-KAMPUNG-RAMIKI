@@ -61,7 +61,7 @@ export default function Description() {
 
                 {/* Section 2 */}
                 <div className="flex items-center">
-                    <div className="w-1/2 pr-10 text-right">
+                    <div className="w-1/2 pr-10 text-right ml-10">
                         <h2 className="text-2xl font-bold text-teal-600">Tentang Kampung Ramiki</h2>
                         <p className="text-gray-700 mt-4">
                             Kampung Ramiki adalah sebuah desa yang terletak di Kabupaten Teluk Wondama, Papua Barat.
