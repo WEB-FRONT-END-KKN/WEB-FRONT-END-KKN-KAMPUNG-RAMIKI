@@ -1,8 +1,16 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { Helmet } from 'react-helmet';
 import { HomeBanner, Location, Description, DescriptionMobile } from '../components';
 
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  
+      useEffect(() => {
+          const handleResize = () => setIsMobile(window.innerWidth < 640);
+          window.addEventListener('resize', handleResize);
+          return () => window.removeEventListener('resize', handleResize);
+      }, []);
+
   return (
     <div>
       <Helmet>
@@ -14,11 +22,8 @@ export default function Home() {
         <meta property="og:type" content="website" />
       </Helmet>
       <HomeBanner />
-      <div id='description' className="hidden lg:block">
-        <Description />
-      </div>
-      <div id='description' className="block lg:hidden">
-        <DescriptionMobile />
+      <div id='description'>
+        {isMobile ? <DescriptionMobile /> : <Description />}
       </div>
       <Location />
     </div>

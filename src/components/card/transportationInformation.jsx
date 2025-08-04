@@ -2,6 +2,12 @@ import React from 'react';
 import { FaShip, FaPlane } from 'react-icons/fa';
 
 export default function TransportationInformation() {
+    const galleryImages = [
+        "/assets/kapalPelni.jpeg",
+        "/assets/kapalExpress.jpeg",
+        "/assets/kapalMargaret.jpeg",
+        "/assets/pesawatSusi.jpg",
+    ];
     return (
         <div className="container mx-auto py-10 px-6">
             {/* Judul */}
@@ -11,11 +17,16 @@ export default function TransportationInformation() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 {/* Gambar Kapal */}
                 <div className="flex justify-center order-1 md:order-2">
-                    <img
-                        src="/assets/kapalPelni.jpeg"
-                        alt="Transportasi Kapal"
-                        className="rounded-lg shadow-lg object-cover w-full md:w-3/4"
-                    />
+                    <div className="grid grid-cols-2 gap-4 mb-10">
+                        {galleryImages.map((image, index) => (
+                            <img
+                                key={index}
+                                src={image}
+                                alt={`Foto Kelompok ${index + 1}`}
+                                className="rounded-lg shadow-lg object-cover w-full h-48"
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 {/* Penjelasan Transportasi */}

@@ -116,7 +116,7 @@ export default function ArtikelPage() {
                                 <img
                                     src={imgSrcList[current]}
                                     alt={`Galeri ${current + 1}`}
-                                    className="rounded-lg object-cover w-full max-h-80"
+                                    className="rounded-lg object-cover h-full max-h-80"
                                 />
                                 <button onClick={nextImage} className="absolute right-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10" aria-label="Selanjutnya">
                                     <FaChevronRight className="text-2xl" />

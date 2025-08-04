@@ -63,7 +63,7 @@ export default function Header() {
               }`
             }
           >
-            About
+            Tentang
           </NavLink>
           <NavLink
             to="/artikel"
@@ -83,7 +83,7 @@ export default function Header() {
               }`
             }
           >
-            Contact
+            Kontak
           </NavLink>
           <NavLink
             to="/citizen"
@@ -138,7 +138,7 @@ export default function Header() {
               className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
               onClick={() => setIsMenuOpen(false)}
             >
-              About
+              Tentang
             </NavLink>
           </li>
           <li>
@@ -156,7 +156,7 @@ export default function Header() {
               className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
               onClick={() => setIsMenuOpen(false)}
             >
-              Contact
+              Kontak
             </NavLink>
           </li>
           <li>
@@ -202,7 +202,7 @@ export default function Header() {
               className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
               onClick={() => setIsMenuOpen(false)}
             >
-              About
+              Tentang
             </NavLink>
           </li>
           <li>
@@ -220,7 +220,7 @@ export default function Header() {
               className="block hover:bg-black hover:text-white px-8 py-6 rounded transition duration-300 text-center"
               onClick={() => setIsMenuOpen(false)}
             >
-              Contact
+              Kontak
             </NavLink>
           </li>
           <li>

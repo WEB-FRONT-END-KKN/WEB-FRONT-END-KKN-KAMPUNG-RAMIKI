@@ -4,10 +4,10 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 export default function UmkmSection() {
     const images = [
-        "/assets/umkmJasa.jpg",
-        "/assets/umkmKerajinan.jpg",
-        "/assets/umkmPapeda.jpg",
-        "/assets/umkmSwadayan.webp",
+        "/assets/umkm/umkmSection1.jpg",
+        "/assets/umkm/umkmSection2.jpg",
+        "/assets/umkm/umkmSection3.jpg",
+        "/assets/umkm/umkmSection4.jpg",
     ];
     const [popupImage, setPopupImage] = useState(null);
 
@@ -47,7 +47,7 @@ export default function UmkmSection() {
         <div className="container mx-auto py-10 px-6">
             {/* MOBILE */}
             <div className="flex flex-col items-center gap-6 lg:hidden">
-                <h2 className="text-3xl font-bold mb-2 w-full text-center">UMKM Sagu</h2>
+                <h2 className="text-3xl font-bold mb-2 w-full text-center">UMKM Kampung Ramiki</h2>
                 {/* Slider */}
                 <div className="relative w-full max-w-md aspect-video bg-gray-200 rounded-xl overflow-hidden flex items-center justify-center">
                     <img

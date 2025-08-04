@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 export default function AboutBanner() {
     const images = [
-        "/assets/badaraWasior.png",
-        "/assets/location.jpeg",
-        "/assets/badaraWasior.png",
-        "/assets/location.jpeg",
+        "/assets/about/aboutBanner1.jpg",
+        "/assets/about/aboutBanner2.jpg", 
+        "/assets/about/aboutBanner3.jpg",
+        "/assets/about/aboutBanner4.jpg",
+        // "/assets/badaraWasior.png",
+        // "/assets/location.jpeg",
+        // "/assets/badaraWasior.png",
+        // "/assets/location.jpeg",
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -70,7 +74,7 @@ export default function AboutBanner() {
                     <img
                         src={images[currentIndex]}
                         alt="Current"
-                        className="rounded-lg shadow-lg object-cover w-full"
+                        className="rounded-lg shadow-lg object-cover h-full"
                     />
                 </div>
 

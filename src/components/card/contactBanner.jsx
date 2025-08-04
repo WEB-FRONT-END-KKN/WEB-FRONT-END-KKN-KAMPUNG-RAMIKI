@@ -4,7 +4,7 @@ export default function ContactBanner() {
     return (
         <div className="container mx-auto py-10 px-6">
             {/* Judul */}
-            <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
+            <h1 className="text-4xl font-bold text-center mb-8">Hubungi Kami</h1>
 
             {/* Konten */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

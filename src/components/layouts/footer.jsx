@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaEnvelope, FaInstagram, FaWhatsapp, FaTwitter, FaYoutube, FaFacebook } from 'react-icons/fa'; // Import React Icons
+import { FaEnvelope, FaInstagram, FaWhatsapp, FaTwitter, FaYoutube, FaTiktok, FaFacebook } from 'react-icons/fa';
+import {RiInstagramFill } from 'react-icons/ri';
 
 export default function Footer() {
   return (
@@ -36,28 +37,20 @@ export default function Footer() {
           <h3 className="text-lg font-bold mb-4">SOCIAL</h3>
           <div className="flex gap-4">
             <a
-              href="https://twitter.com/"
+              href="https://www.tiktok.com/@kkn.ramiki"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition"
+              className="text-gray-400 hover:text-black transition"
             >
-              <FaTwitter size={24} />
+              <FaTiktok size={24} />
             </a>
             <a
-              href="https://youtube.com/"
+              href="https://www.instagram.com/kkn_ramiki"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition"
+              className="text-gray-400 hover:text-black transition"
             >
-              <FaYoutube size={24} />
-            </a>
-            <a
-              href="https://facebook.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition"
-            >
-              <FaFacebook size={24} />
+              <RiInstagramFill size={24} />
             </a>
           </div>
         </div>
