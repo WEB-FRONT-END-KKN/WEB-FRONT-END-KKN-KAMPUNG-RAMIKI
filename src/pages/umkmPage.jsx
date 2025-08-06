@@ -33,7 +33,7 @@ export default function UmkmPage() {
             nama: "Yulianus Tawaru"
         },
         {
-            foto: "/assets/sekretaris.jpg",
+            foto: "/assets/sekertaris.jpg",
             jabatan: "Sekretaris",
             nama: "Tania Nunanki"
         },

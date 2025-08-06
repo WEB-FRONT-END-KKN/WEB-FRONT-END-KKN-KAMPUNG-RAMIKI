@@ -40,7 +40,7 @@ export default function UmkmSection() {
         }, 5000);
     };
 
-    const handleImageClick = (image) => setPopupImage(image);
+    // const handleImageClick = (image) => setPopupImage(image);
     const closePopup = () => setPopupImage(null);
 
     return (
@@ -49,12 +49,12 @@ export default function UmkmSection() {
             <div className="flex flex-col items-center gap-6 lg:hidden">
                 <h2 className="text-3xl font-bold mb-2 w-full text-center">UMKM Kampung Ramiki</h2>
                 {/* Slider */}
-                <div className="relative w-full max-w-md aspect-video bg-gray-200 rounded-xl overflow-hidden flex items-center justify-center">
+                <div className="relative w-full aspect-video bg-gray-200 rounded-xl overflow-hidden flex items-center justify-center">
                     <img
                         src={images[currentIdx]}
                         alt={`UMKM ${currentIdx + 1}`}
                         className="object-cover w-full h-full cursor-pointer"
-                        onClick={() => handleImageClick(images[currentIdx])}
+                        // onClick={() => handleImageClick(images[currentIdx])}
                     />
                     {/* Tombol kiri */}
                     <button
@@ -85,7 +85,7 @@ export default function UmkmSection() {
                     ))}
                 </div>
                 {/* Penjelasan */}
-                <div className="w-full max-w-md flex flex-col items-center">
+                <div className="w-full flex flex-col items-center">
                     <p className="text-gray-700 text-lg leading-relaxed mb-4 text-left">
                         UMKM Kampung Ramiki adalah inisiatif lokal yang bertujuan untuk meningkatkan kesejahteraan masyarakat
                         melalui berbagai produk kreatif dan inovatif. Produk-produk UMKM ini mencakup kerajinan tangan,
@@ -116,7 +116,7 @@ export default function UmkmSection() {
                                 src={image}
                                 alt={`UMKM Image ${index + 1}`}
                                 className="rounded-lg shadow-lg object-cover w-full h-48 transform transition-transform duration-300 hover:scale-105 cursor-pointer"
-                                onClick={() => handleImageClick(image)}
+                                // onClick={() => handleImageClick(image)}
                             />
                         ))}
                     </div>

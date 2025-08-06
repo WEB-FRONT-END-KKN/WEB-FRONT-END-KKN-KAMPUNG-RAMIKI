@@ -106,16 +106,17 @@ export default function DescriptionAbout() {
             {/* Kepala Desa */}
             <section className="mb-10">
                 <h2 className="text-3xl font-bold text-center mb-4">Kepala Desa</h2>
-                <div className="flex flex-col lg:flex-row gap-6">
-
-                    <img
-                        src="/assets/home/homePage3.jpg"
-                        alt="Kepala Desa Kampung Ramiki"
-                        className="rounded-lg shadow-lg object-cover w-full lg:w-1/3 h-64"
-                    />
+                <div className="flex flex-col items-center lg:flex-row gap-6">
+                    <div className='w-full lg:w-1/3 flex justify-center'>
+                        <img
+                            src="/assets/kepalaKampung.png"
+                            alt="Kepala Desa Kampung Ramiki"
+                            className=" object-cover h-64 mr-5"
+                        />
+                    </div>
                     <div className='my-5'>
-                        <h3 className="text-2xl font-bold mb-2">Bapak Enos Foel Worisio</h3>
-                        <p className="text-gray-700 text-lg leading-relaxed">
+                        <h3 className="text-2xl font-bold mb-2  max-lg:text-center">Bapak Enos Foel Worisio</h3>
+                        <p className="text-gray-700 text-lg leading-relaxed  max-lg:text-justify">
                             Bapak Enos Foel Worisio adalah kepala desa Kampung Ramiki yang telah menjabat sejak tahun 2020. Beliau
                             memiliki visi untuk memajukan desa melalui pemberdayaan masyarakat dan pengembangan potensi lokal.
                         </p>
