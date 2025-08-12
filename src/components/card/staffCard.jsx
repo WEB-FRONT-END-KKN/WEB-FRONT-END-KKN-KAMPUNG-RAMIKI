@@ -1,7 +1,7 @@
-import React ,{useEffect , useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function StaffCard({ nama, jabatan, foto, tahunJabat }) {
+export default function StaffCard({ nama, jabatan, foto }) {
     const [fotoImage, setFoto] = useState(null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -40,18 +40,19 @@ export default function StaffCard({ nama, jabatan, foto, tahunJabat }) {
         loadImages();
     }, [foto]);
     return (
-        <div className="flex flex-col items-center bg-white rounded-lg shadow-md p-4 w-44">
-            <img
-                src={!loading && fotoImage ? fotoImage : "/assets/about/staffIcon.PNG"}
-                alt={nama}
-                className="w-20 h-20 object-cover rounded-full mb-2 border-2 border-green-500"
-                onError={(e) => {
-                    e.target.src = "/assets/about/staffIcon.PNG"; // Ganti dengan gambar default
-                }}
-            />
-            <span className="font-bold text-center">{jabatan}</span>
-            <span className="text-gray-700 text-center">{nama}</span>
-            <span className="text-gray-500 text-center">{tahunJabat}</span>
+        <div className="flex flex-col items-center bg-white rounded-lg shadow-md p-4 w-44 h-[220px] justify-between">
+            <div className="flex flex-col items-center">
+                <img
+                    src={!loading && fotoImage ? fotoImage : "/assets/about/staffIcon.PNG"}
+                    alt={nama}
+                    className="w-20 h-20 object-cover rounded-full mb-2 border-2 border-green-500"
+                    onError={(e) => {
+                        e.target.src = "/assets/about/staffIcon.PNG";
+                    }}
+                />
+                <span className="font-bold text-center text-sm min-h-[32px]">{jabatan}</span>
+                <span className="text-gray-700 text-center text-sm min-h-[32px]">{nama}</span>
+            </div>
         </div>
     );
 }

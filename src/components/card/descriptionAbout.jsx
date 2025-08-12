@@ -101,7 +101,7 @@ export default function DescriptionAbout() {
                 console.error("Error fetching image:", error);
             }
         };
-        
+
         fetchImage(kepalaDesaData?.foto, setKepalaDesaImage)
     }, [kepalaDesaData?.foto]);
 
@@ -208,14 +208,15 @@ export default function DescriptionAbout() {
             {/* Section Staff Desa */}
             <section className="mb-10">
                 <h2 className="text-3xl font-bold text-center mb-4">Staff Desa</h2>
-                <div className="flex flex-wrap justify-center gap-8">
+                <div className="flex overflow-x-auto flex-nowrap lg:flex-wrap lg:overflow-x-visible justify-start gap-6 px-2 snap-x scroll-smooth">
                     {staffList.map((staff, idx) => (
-                        <StaffCard
-                            key={idx}
-                            nama={staff.nama}
-                            jabatan={staff.jabatan}
-                            foto={staff.foto}
-                        />
+                        <div key={idx} className="snap-center flex-shrink-0">
+                            <StaffCard
+                                nama={staff.nama}
+                                jabatan={staff.jabatan}
+                                foto={staff.foto}
+                            />
+                        </div>
                     ))}
                 </div>
             </section>
