@@ -130,7 +130,7 @@ export default function ArtikelList() {
         <Link to={`/artikel/${item.slug}`} key={item.slug}>
           <ArtikelCard
             image={item.images[0]}
-            title={item.title?.length > 50 ? item.title.slice(0, 50) + '...' : item.title}
+            title={item.title}
             excerpt={item.content?.length > 80 ? item.content.slice(0, 80) + '...' : item.content}
             date={item.date}
             author={item.namaPenulis}

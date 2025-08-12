@@ -29,7 +29,7 @@ export default function ArtikelCard({ image, title, excerpt, date, kategori }) {
     return (
         <div className="flex flex-col md:flex-row w-full bg-white rounded-lg shadow-md overflow-hidden mb-4 relative">
             {/* Gambar Artikel */}
-            <div className="w-full h-48 md:w-64 md:h-32 flex items-center justify-center bg-gray-100">
+            <div className="w-full h-48 md:w-64 md:h-32 flex items-center justify-center bg-gray-100 flex-shrink-0">
                 {loading ? (
                     <span className="loading loading-ring loading-xl text-emerald-600"></span>
                 ) : (
@@ -37,7 +37,7 @@ export default function ArtikelCard({ image, title, excerpt, date, kategori }) {
                         <img
                             src={imgSrc}
                             alt={title}
-                            className="w-full h-48 object-cover md:w-64 md:h-32"
+                            className="w-full h-full object-cover"
                         />
                     )
                 )}
