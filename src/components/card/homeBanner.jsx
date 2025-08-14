@@ -12,7 +12,7 @@ export default function homeBanner() {
         <div
             className="hero min-h-screen"
             style={{
-                backgroundImage: "url(/assets/homeBanner.png)"
+                backgroundImage: "url(/assets/home/homePage3.jpg)",
             }}
         >
 

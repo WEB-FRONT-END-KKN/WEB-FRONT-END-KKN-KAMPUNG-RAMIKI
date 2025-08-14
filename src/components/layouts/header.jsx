@@ -14,25 +14,33 @@ export default function Header() {
     <header className="shadow-md">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo */}
-        <div id="header-icon" className="flex items-center gap-4">
-          <img
-            src="/assets/logoKelompok.jpg"
-            alt="Logo Kelompok KKN"
-            className="w-10 h-10 object-contain"
-          />
-          <img
-            src="/assets/logoUnipa.webp"
-            alt="Logo Universitas Papua"
-            className="w-10 h-10 object-contain"
-          />
-          <img
-            src="/assets/logoPapuaBarat.svg"
-            alt="Logo Papua Barat"
-            className="w-10 h-10 object-contain"
-          />
-          <div id="icon-class" className="text-2xl font-bold lg:text-large">
-            <span id="icon-name">Kampung Ramiki</span>
-          </div>
+        <div id="header-icon">
+          <NavLink className="flex items-center gap-1" to="/">
+            {/* <img
+              src="/assets/logoKelompok.jpg"
+              alt="Logo Kelompok KKN"
+              className="w-10 h-10 object-contain"
+            />
+
+            <img
+              src="/assets/logoUnipa.webp"
+              alt="Logo Universitas Papua"
+              className="w-10 h-10 object-contain"
+            /> */}
+            <img
+              src="/assets/logoWondama.png"
+              alt="Logo Wondama"
+              className="w-10 h-10 object-contain"
+            />
+            <img
+              src="/assets/logoPapuaBarat.svg"
+              alt="Logo Papua Barat"
+              className="w-10 h-10 object-contain"
+            />
+            <div id="icon-class" className="text-2xl font-bold lg:text-large">
+              <span id="icon-name">Kampung Ramiki</span>
+            </div>
+          </NavLink>
         </div>
 
         {/* Hamburger Menu for Tablet and Mobile */}
@@ -48,8 +56,7 @@ export default function Header() {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `px-4 py-2 rounded transition duration-300 ${
-                isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
+              `px-4 py-2 rounded transition duration-300 ${isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
               }`
             }
           >
@@ -58,8 +65,7 @@ export default function Header() {
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              `px-4 py-2 rounded transition duration-300 ${
-                isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
+              `px-4 py-2 rounded transition duration-300 ${isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
               }`
             }
           >
@@ -68,8 +74,7 @@ export default function Header() {
           <NavLink
             to="/artikel"
             className={({ isActive }) =>
-              `px-4 py-2 rounded transition duration-300 ${
-                isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
+              `px-4 py-2 rounded transition duration-300 ${isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
               }`
             }
           >
@@ -78,8 +83,7 @@ export default function Header() {
           <NavLink
             to="/contact"
             className={({ isActive }) =>
-              `px-4 py-2 rounded transition duration-300 ${
-                isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
+              `px-4 py-2 rounded transition duration-300 ${isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
               }`
             }
           >
@@ -88,8 +92,7 @@ export default function Header() {
           <NavLink
             to="/citizen"
             className={({ isActive }) =>
-              `px-4 py-2 rounded transition duration-300 ${
-                isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
+              `px-4 py-2 rounded transition duration-300 ${isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
               }`
             }
           >
@@ -98,8 +101,7 @@ export default function Header() {
           <NavLink
             to="/potensi"
             className={({ isActive }) =>
-              `px-4 py-2 rounded transition duration-300 ${
-                isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
+              `px-4 py-2 rounded transition duration-300 ${isActive ? "bg-black text-white" : "hover:bg-black hover:text-white"
               }`
             }
           >
@@ -118,9 +120,8 @@ export default function Header() {
 
       {/* Slide-in Menu for Tablet */}
       <div
-        className={`hidden md:block lg:hidden fixed top-0 right-0 h-full w-1/2 bg-white z-50 transform ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300`}
+        className={`hidden md:block lg:hidden fixed top-0 right-0 h-full w-1/2 bg-white z-50 transform ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300`}
       >
         <ul className="grid grid-cols-1 py-6">
           <li>
@@ -182,9 +183,8 @@ export default function Header() {
 
       {/* Dropdown Menu for Mobile */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? " max-h-full" : "max-h-0"
-        }`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? " max-h-full" : "max-h-0"
+          }`}
       >
         <ul className="grid grid-cols-1 gap-4 items-center bg-white pt-4 shadow-md">
           <li>
