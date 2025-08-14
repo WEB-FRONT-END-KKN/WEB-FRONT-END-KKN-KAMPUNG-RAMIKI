@@ -18,11 +18,11 @@ export default function Contact() {
             <TransformationInformation />
 
             {/* Section Kontak Kelompok KKN */}
-            <div className="container mx-auto py-10 px-6">
-                <h2 className="text-3xl font-bold text-center mb-8">Kontak Kelompok KKN</h2>
+            {/* <div className="container mx-auto py-10 px-6">
+                <h2 className="text-3xl font-bold text-center mb-8">Kontak Kelompok KKN</h2> */}
 
                 {/* Logo Kelompok */}
-                <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
+                {/* <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
                     <img
                         src="/assets/logoKelompok.jpg"
                         alt="Logo Kelompok KKN"
@@ -38,36 +38,36 @@ export default function Contact() {
                         alt="Logo Papua Barat"
                         className="w-32 h-32 object-contain"
                     />
-                </div>
+                </div> */}
 
                 {/* Kontak Media */}
-                <div className="flex flex-col items-center gap-4">
+                {/* <div className="flex flex-col items-center gap-4"> */}
                     {/* Tombol Instagram */}
-                    <div className="text-center">
+                    {/* <div className="text-center">
                         <a
                             href="https://www.instagram.com/kkn_ramiki/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center px-6 py-3 bg-pink-500 text-white rounded-lg shadow-lg hover:bg-white hover:text-pink-500 transition"
                         >
-                            <FaInstagram className="w-6 h-6 mr-2" /> {/* Logo Instagram */}
+                            <FaInstagram className="w-6 h-6 mr-2" /> 
                             Follow us for more @kkn_ramiki
                         </a>
-                    </div>
+                    </div> */}
                     {/* Tombol Instagram */}
-                    <div className="text-center">
+                    {/* <div className="text-center">
                         <a
                             href="https://www.tiktok.com/@kkn.ramiki"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center px-6 py-3 bg-black text-white rounded-lg shadow-lg hover:bg-white hover:text-black transition"
                         >
-                            <FaTiktok className="w-6 h-6 mr-2" /> {/* Logo TikTok */}
+                            <FaTiktok className="w-6 h-6 mr-2" /> 
                             Follow us for more @kkn.ramiki
                         </a>
-                    </div>
-                </div>
-            </div>
+                    </div> */}
+                {/* </div> */}
+            {/* </div> */}
         </div>
     );
 }

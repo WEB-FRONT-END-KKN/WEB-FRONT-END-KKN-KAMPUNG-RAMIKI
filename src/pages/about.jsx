@@ -16,7 +16,7 @@ export default function about() {
             <AboutBanner />
             <DescriptionAbout />
             <UmkmSection />
-            <TeamKKN />
+            {/* <TeamKKN /> */}
         </div>
     )
 }
